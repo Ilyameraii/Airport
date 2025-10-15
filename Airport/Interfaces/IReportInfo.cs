@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Airport.Interfaces
 {
-    internal interface IReportInfo
+    public interface IReportInfo
     {
         int TotalPassangers { get; }
 

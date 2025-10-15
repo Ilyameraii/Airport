@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Airport.Interfaces
 {
-    internal interface IAddFlight
+    public interface IAddFlight
     {
-        void AddFlight();
+        void AddFlight(IFlightInfo flight);
     }
 }

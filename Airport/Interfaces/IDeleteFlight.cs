@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Airport.Interfaces
 {
-    internal interface IDeleteFlight
+    public interface IDeleteFlight
     {
-        void DeleteFlight();
+        void DeleteFlight(Guid ID);
     }
 }

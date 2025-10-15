@@ -28,18 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            buttonWorker = new Button();
             SuspendLayout();
+            // 
+            // buttonWorker
+            // 
+            buttonWorker.Location = new Point(407, 263);
+            buttonWorker.Name = "buttonWorker";
+            buttonWorker.Size = new Size(108, 39);
+            buttonWorker.TabIndex = 0;
+            buttonWorker.Text = "Работник";
+            buttonWorker.UseVisualStyleBackColor = true;
+            buttonWorker.Click += buttonWorker_Click;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonWorker);
             Name = "MainForm";
             Text = "Airport";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button buttonWorker;
     }
 }

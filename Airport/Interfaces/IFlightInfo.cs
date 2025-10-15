@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airport.Interfaces
 {
-    internal interface IFlightInfo
+    public interface IFlightInfo
     {
         Guid ID { get; }
         string AirplaneType { get; }

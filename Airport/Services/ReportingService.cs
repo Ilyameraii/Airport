@@ -29,7 +29,7 @@ namespace Airport.Services
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public int TotalCrew=>flights.Sum(f => f.NumberOfCrew);
+        public int TotalCrew => flights.Sum(f => f.NumberOfCrew);
 
         /// <summary>
         /// Сумма всех рейсов

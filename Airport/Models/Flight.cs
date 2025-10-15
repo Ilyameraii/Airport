@@ -9,6 +9,12 @@ namespace Airport.Models
 {
     public class Flight : IFlightInfo
     {
+        public Flight() {
+            ID = Guid.NewGuid();
+            AirplaneType = "Неизвестный";
+
+
+        }
         public Flight(string airplaneType, DateTime arrivalTime, int numberOfPassengers,
             decimal passengerTax, int numberOfCrew, decimal crewTax, decimal servicePercentage)
         {
