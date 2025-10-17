@@ -48,6 +48,7 @@
             ClientSize = new Size(800, 450);
             Controls.Add(buttonWorker);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Airport";
             ResumeLayout(false);
         }
