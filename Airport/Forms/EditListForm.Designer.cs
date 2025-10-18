@@ -108,10 +108,10 @@
             // 
             labelType.Anchor = AnchorStyles.Right;
             labelType.AutoSize = true;
-            labelType.Location = new Point(63, 7);
+            labelType.Location = new Point(64, 7);
             labelType.Margin = new Padding(3, 0, 3, 10);
             labelType.Name = "labelType";
-            labelType.Size = new Size(83, 15);
+            labelType.Size = new Size(82, 15);
             labelType.TabIndex = 0;
             labelType.Text = "Тип самолета";
             // 
@@ -192,6 +192,7 @@
             // passengerTaxPicker
             // 
             passengerTaxPicker.Anchor = AnchorStyles.Left;
+            passengerTaxPicker.DecimalPlaces = 2;
             passengerTaxPicker.Location = new Point(152, 128);
             passengerTaxPicker.Name = "passengerTaxPicker";
             passengerTaxPicker.Size = new Size(120, 23);
@@ -208,6 +209,7 @@
             // crewTaxPicker
             // 
             crewTaxPicker.Anchor = AnchorStyles.Left;
+            crewTaxPicker.DecimalPlaces = 2;
             crewTaxPicker.Location = new Point(152, 208);
             crewTaxPicker.Name = "crewTaxPicker";
             crewTaxPicker.Size = new Size(120, 23);
@@ -267,8 +269,8 @@
             // 
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 1);
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel1, 0, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(0, 105);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -280,13 +282,13 @@
             // 
             // tableLayoutPanel3
             // 
-            tableLayoutPanel3.Anchor = AnchorStyles.None;
+            tableLayoutPanel3.Anchor = AnchorStyles.Right;
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.Controls.Add(buttonClear, 1, 0);
             tableLayoutPanel3.Controls.Add(buttonSave, 0, 0);
-            tableLayoutPanel3.Location = new Point(102, 358);
+            tableLayoutPanel3.Location = new Point(202, 358);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
