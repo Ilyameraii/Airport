@@ -1,29 +1,30 @@
 using Airport.Interfaces;
-using Airport.Models;
-using Airport.Services;
 using Airport.UserControls;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms;
 
 namespace Airport
 {
     public partial class MainForm : Form
     {
-        // типа база данных рейсов
-        private List<IFlightInfo> flights = new();
 
-        private WorkerControl workerControl;
+        private readonly WorkerControl workerControl;
+        private readonly AdministratorControl administratorControl;
 
-        public MainForm()
+
+        public MainForm(IEnumerable<IFlightInfo> flights, IFlightRegistryService flightRegistryService, IReportInfo reportingService)
         {
             InitializeComponent();
 
-            workerControl = new(flights);
+            workerControl = new(flightRegistryService);
             workerControl.Dock = DockStyle.Fill;
-            workerControl.OnButtonClicked = () => CloseUserControl(workerControl);
+            workerControl.OnExitClicked = () => CloseUserControl(workerControl);
+
+            administratorControl = new(reportingService);
+            administratorControl.Dock = DockStyle.Fill;
+
+            administratorControl.OnExitClicked = () => CloseUserControl(administratorControl);
         }
 
-        private void buttonWorker_Click(object sender, EventArgs e)
+        private void buttonWorker_Click(object sender, EventArgs rrrrrrre)
         {
 
             ShowUserControl(workerControl);
@@ -45,6 +46,12 @@ namespace Airport
             {
                 Controls.Remove(userControl);
             }
+        }
+
+        private void buttonAdministrator_Click(object sender, EventArgs e)
+        {
+            administratorControl.RefreshData();
+            ShowUserControl(administratorControl);
         }
     }
 }

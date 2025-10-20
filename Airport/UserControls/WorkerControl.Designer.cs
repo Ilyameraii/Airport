@@ -88,6 +88,7 @@
             dataGridView.Name = "dataGridView";
             dataGridView.Size = new Size(780, 318);
             dataGridView.TabIndex = 3;
+            dataGridView.CellClick += dataGridView_CellClick;
             // 
             // tableButtons
             // 
@@ -146,6 +147,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.Transparent;
             Controls.Add(tableLayoutPanel1);
             Margin = new Padding(0);
             Name = "WorkerControl";

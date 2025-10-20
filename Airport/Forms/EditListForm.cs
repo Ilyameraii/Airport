@@ -1,24 +1,55 @@
-﻿using Airport.Interfaces;
+﻿using Airport.Extensions;
+using Airport.Interfaces;
 using Airport.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Airport.Forms
 {
     public partial class EditListForm : Form
     {
-        public Flight? ResultFlight { get; private set; } = null!;
+        private readonly IFlightInfo currentFlight = null!;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public EditListForm()
         {
             InitializeComponent();
+
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="currentFlight">Выбранный для редактирования рейс</param>
+        public EditListForm(IFlightInfo currentFlight)
+        {
+
+            InitializeComponent();
+
+            this.currentFlight = currentFlight;
+
+            // биндим контролы
+            AddBindingsForControls();
+
+            // возвращать будем измененный currentFlight
+            ResultFlight = currentFlight;
+
+        }
+
+        /// <summary>
+        /// Результирующий рейс
+        /// </summary>
+        public IFlightInfo? ResultFlight { get; private set; }
+
+        private void AddBindingsForControls()
+        {
+            airplaneTypePicker.AddBindings(x => x.Text, currentFlight, c => c.AirplaneType);
+            arrivalTimePicker.AddBindings(x => x.Value, currentFlight, c => c.ArrivalTime);
+            numberOfPassengersPicker.AddBindings(x => x.Value, currentFlight, c => c.NumberOfPassengers);
+            passengerTaxPicker.AddBindings(x => x.Value, currentFlight, c => c.PassengerTax);
+            numberOfCrewPicker.AddBindings(x => x.Value, currentFlight, c => c.NumberOfCrew);
+            crewTaxPicker.AddBindings(x => x.Value, currentFlight, c => c.CrewTax);
+            servicePercentagePicker.AddBindings(x => x.Value, currentFlight, c => c.ServicePercentage);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -43,13 +74,15 @@ namespace Airport.Forms
         {
             var dialogResult = MessageBox.Show("Вы уверены, что хотите очистить форму?", "Подтверждение",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            
+
             if (dialogResult == DialogResult.Yes)
             {
                 ClearForm();
             }
 
         }
+
+        // очистка заполненной формы
         private void ClearForm()
         {
             airplaneTypePicker.Text = string.Empty;

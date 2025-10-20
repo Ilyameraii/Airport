@@ -1,22 +1,18 @@
 ﻿using Airport.Interfaces;
 using Airport.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Services
 {
     internal class ReportingService : IReportInfo
     {
-        private IEnumerable<Flight> flights;
+        private readonly BindingList<IFlightInfo> flights;
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flights">Рейсы</param>
-        public ReportingService(IEnumerable<Flight> flights)
+        /// <param name="flights">Список рейсов</param>
+        public ReportingService(BindingList<IFlightInfo> flights)
         {
             this.flights = flights;
         }

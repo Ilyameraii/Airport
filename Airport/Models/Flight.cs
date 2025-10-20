@@ -1,31 +1,18 @@
 ﻿using Airport.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Airport.Models
 {
     public class Flight : IFlightInfo
     {
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public Flight() {
             ID = Guid.NewGuid();
             AirplaneType = "Неизвестный";
 
 
-        }
-        public Flight(string airplaneType, DateTime arrivalTime, int numberOfPassengers,
-            decimal passengerTax, int numberOfCrew, decimal crewTax, decimal servicePercentage)
-        {
-            ID = Guid.NewGuid();
-            AirplaneType = airplaneType;
-            ArrivalTime = arrivalTime;
-            NumberOfPassengers = numberOfPassengers;
-            PassengerTax = passengerTax;
-            NumberOfCrew = numberOfCrew;
-            CrewTax = crewTax;
-            ServicePercentage = servicePercentage;
         }
 
         /// <summary>
@@ -68,7 +55,9 @@ namespace Airport.Models
         /// </summary>
         public decimal ServicePercentage { get; set; }
 
-
+        /// <summary>
+        /// Выручка
+        /// </summary>
         public decimal Revenue => (NumberOfPassengers * PassengerTax + NumberOfCrew * CrewTax) * (1.0m + ServicePercentage);
     }
 }

@@ -1,3 +1,8 @@
+using Airport.Interfaces;
+using Airport.Models;
+using Airport.Services;
+using System.ComponentModel;
+
 namespace Airport
 {
     internal static class Program
@@ -11,7 +16,13 @@ namespace Airport
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+
+            // Создаём зависимости вручную
+            var flights = new BindingList<IFlightInfo>();
+            var flightRegistryService = new FlightRegistryService(flights);
+            var reportingService = new ReportingService(flights);
+
+            Application.Run(new MainForm(flights, flightRegistryService, reportingService));
         }
     }
 }

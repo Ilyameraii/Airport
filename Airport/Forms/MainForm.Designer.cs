@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             buttonWorker = new Button();
+            buttonAdministrator = new Button();
             SuspendLayout();
             // 
             // buttonWorker
             // 
-            buttonWorker.Location = new Point(407, 263);
+            buttonWorker.Location = new Point(449, 227);
             buttonWorker.Name = "buttonWorker";
             buttonWorker.Size = new Size(108, 39);
             buttonWorker.TabIndex = 0;
@@ -41,11 +42,22 @@
             buttonWorker.UseVisualStyleBackColor = true;
             buttonWorker.Click += buttonWorker_Click;
             // 
+            // buttonAdministrator
+            // 
+            buttonAdministrator.Location = new Point(226, 227);
+            buttonAdministrator.Name = "buttonAdministrator";
+            buttonAdministrator.Size = new Size(108, 39);
+            buttonAdministrator.TabIndex = 1;
+            buttonAdministrator.Text = "Администратор";
+            buttonAdministrator.UseVisualStyleBackColor = true;
+            buttonAdministrator.Click += buttonAdministrator_Click;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(buttonAdministrator);
             Controls.Add(buttonWorker);
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
@@ -56,5 +68,6 @@
         #endregion
 
         private Button buttonWorker;
+        private Button buttonAdministrator;
     }
 }

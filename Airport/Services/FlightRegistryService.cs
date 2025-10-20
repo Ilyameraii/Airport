@@ -1,28 +1,21 @@
 ﻿using Airport.Interfaces;
 using Airport.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace Airport.Services
 {
-    internal class FlightRegistryService : IAddFlight, IDeleteFlight, IEditFlight
+    internal class FlightRegistryService : IFlightRegistryService
     {
-        private List<IFlightInfo> flights;
-
+        private readonly BindingList<IFlightInfo> flights = new();
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flight">Рейс</param>
-        public FlightRegistryService(List<IFlightInfo> flights)
+        /// <param name="flight">Рейс</param>   
+        public FlightRegistryService(BindingList<IFlightInfo> flights)
         {
-            this.flights = flights;
+            this.flights = flights ?? throw new ArgumentNullException(nameof(flights));
         }
-
-        public IReadOnlyList<IFlightInfo> GetAllFlights() => flights.AsReadOnly();
-
+        public IList<IFlightInfo> Flights => flights;
         public void AddFlight(IFlightInfo flight)
         {
             flights.Add(flight);
@@ -36,16 +29,5 @@ namespace Airport.Services
                 flights.Remove(flight);
             }
         }
-
-        public bool EditFlight(Flight updatedFlight)
-        {
-            var index = flights.FindIndex(f => f.ID == updatedFlight.ID);
-            if (index == -1) return false;
-            flights[index] = updatedFlight;
-            return true;
-        }
-
-
-
     }
 }

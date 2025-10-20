@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Airport.Interfaces
+﻿namespace Airport.Interfaces
 {
     public interface IFlightInfo
     {
@@ -15,7 +9,7 @@ namespace Airport.Interfaces
         decimal PassengerTax { get; }
         int NumberOfCrew { get; }
         decimal CrewTax { get; }
-        decimal ServicePercentage { get; } // например, 0.1 = 10%
+        decimal ServicePercentage { get; } 
         decimal Revenue { get; }
     }
 }
