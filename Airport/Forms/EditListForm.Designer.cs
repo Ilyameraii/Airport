@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
             labelType = new Label();
@@ -48,6 +49,7 @@
             buttonClear = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel3 = new TableLayoutPanel();
+            errorProvider = new ErrorProvider(components);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)passengerTaxPicker).BeginInit();
@@ -57,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)numberOfPassengersPicker).BeginInit();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)errorProvider).BeginInit();
             SuspendLayout();
             // 
             // pictureBox1
@@ -91,7 +94,7 @@
             tableLayoutPanel1.Controls.Add(servicePercentagePicker, 1, 6);
             tableLayoutPanel1.Controls.Add(arrivalTimePicker, 1, 1);
             tableLayoutPanel1.Controls.Add(numberOfPassengersPicker, 1, 2);
-            tableLayoutPanel1.Location = new Point(33, 30);
+            tableLayoutPanel1.Location = new Point(22, 30);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 7;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
@@ -101,17 +104,17 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
-            tableLayoutPanel1.Size = new Size(338, 287);
+            tableLayoutPanel1.Size = new Size(360, 287);
             tableLayoutPanel1.TabIndex = 1;
             // 
             // labelType
             // 
             labelType.Anchor = AnchorStyles.Right;
             labelType.AutoSize = true;
-            labelType.Location = new Point(64, 7);
+            labelType.Location = new Point(73, 7);
             labelType.Margin = new Padding(3, 0, 3, 10);
             labelType.Name = "labelType";
-            labelType.Size = new Size(82, 15);
+            labelType.Size = new Size(83, 15);
             labelType.TabIndex = 0;
             labelType.Text = "Тип самолета";
             // 
@@ -119,7 +122,7 @@
             // 
             labelArrivedTime.Anchor = AnchorStyles.Right;
             labelArrivedTime.AutoSize = true;
-            labelArrivedTime.Location = new Point(46, 47);
+            labelArrivedTime.Location = new Point(56, 47);
             labelArrivedTime.Margin = new Padding(3, 0, 3, 10);
             labelArrivedTime.Name = "labelArrivedTime";
             labelArrivedTime.Size = new Size(100, 15);
@@ -130,7 +133,7 @@
             // 
             labelCountPassengers.Anchor = AnchorStyles.Right;
             labelCountPassengers.AutoSize = true;
-            labelCountPassengers.Location = new Point(4, 87);
+            labelCountPassengers.Location = new Point(14, 87);
             labelCountPassengers.Margin = new Padding(3, 0, 3, 10);
             labelCountPassengers.Name = "labelCountPassengers";
             labelCountPassengers.Size = new Size(142, 15);
@@ -141,7 +144,7 @@
             // 
             labelTaxPassenger.Anchor = AnchorStyles.Right;
             labelTaxPassenger.AutoSize = true;
-            labelTaxPassenger.Location = new Point(31, 127);
+            labelTaxPassenger.Location = new Point(41, 127);
             labelTaxPassenger.Margin = new Padding(3, 0, 3, 10);
             labelTaxPassenger.Name = "labelTaxPassenger";
             labelTaxPassenger.Size = new Size(115, 15);
@@ -152,7 +155,7 @@
             // 
             labelCountCrew.Anchor = AnchorStyles.Right;
             labelCountCrew.AutoSize = true;
-            labelCountCrew.Location = new Point(24, 167);
+            labelCountCrew.Location = new Point(34, 167);
             labelCountCrew.Margin = new Padding(3, 0, 3, 10);
             labelCountCrew.Name = "labelCountCrew";
             labelCountCrew.Size = new Size(122, 15);
@@ -163,7 +166,7 @@
             // 
             labelTaxCrew.Anchor = AnchorStyles.Right;
             labelTaxCrew.AutoSize = true;
-            labelTaxCrew.Location = new Point(50, 207);
+            labelTaxCrew.Location = new Point(60, 207);
             labelTaxCrew.Margin = new Padding(3, 0, 3, 10);
             labelTaxCrew.Name = "labelTaxCrew";
             labelTaxCrew.Size = new Size(96, 15);
@@ -174,7 +177,7 @@
             // 
             labelPercent.Anchor = AnchorStyles.Right;
             labelPercent.AutoSize = true;
-            labelPercent.Location = new Point(20, 243);
+            labelPercent.Location = new Point(30, 243);
             labelPercent.Margin = new Padding(3, 0, 3, 10);
             labelPercent.Name = "labelPercent";
             labelPercent.Size = new Size(126, 30);
@@ -184,16 +187,16 @@
             // airplaneTypePicker
             // 
             airplaneTypePicker.Anchor = AnchorStyles.Left;
-            airplaneTypePicker.Location = new Point(152, 8);
+            airplaneTypePicker.Location = new Point(162, 8);
             airplaneTypePicker.Name = "airplaneTypePicker";
-            airplaneTypePicker.Size = new Size(183, 23);
+            airplaneTypePicker.Size = new Size(156, 23);
             airplaneTypePicker.TabIndex = 7;
             // 
             // passengerTaxPicker
             // 
             passengerTaxPicker.Anchor = AnchorStyles.Left;
             passengerTaxPicker.DecimalPlaces = 2;
-            passengerTaxPicker.Location = new Point(152, 128);
+            passengerTaxPicker.Location = new Point(162, 128);
             passengerTaxPicker.Name = "passengerTaxPicker";
             passengerTaxPicker.Size = new Size(120, 23);
             passengerTaxPicker.TabIndex = 9;
@@ -201,7 +204,7 @@
             // numberOfCrewPicker
             // 
             numberOfCrewPicker.Anchor = AnchorStyles.Left;
-            numberOfCrewPicker.Location = new Point(152, 168);
+            numberOfCrewPicker.Location = new Point(162, 168);
             numberOfCrewPicker.Name = "numberOfCrewPicker";
             numberOfCrewPicker.Size = new Size(120, 23);
             numberOfCrewPicker.TabIndex = 10;
@@ -210,7 +213,7 @@
             // 
             crewTaxPicker.Anchor = AnchorStyles.Left;
             crewTaxPicker.DecimalPlaces = 2;
-            crewTaxPicker.Location = new Point(152, 208);
+            crewTaxPicker.Location = new Point(162, 208);
             crewTaxPicker.Name = "crewTaxPicker";
             crewTaxPicker.Size = new Size(120, 23);
             crewTaxPicker.TabIndex = 11;
@@ -220,7 +223,7 @@
             servicePercentagePicker.Anchor = AnchorStyles.Left;
             servicePercentagePicker.DecimalPlaces = 2;
             servicePercentagePicker.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
-            servicePercentagePicker.Location = new Point(152, 252);
+            servicePercentagePicker.Location = new Point(162, 252);
             servicePercentagePicker.Name = "servicePercentagePicker";
             servicePercentagePicker.Size = new Size(120, 23);
             servicePercentagePicker.TabIndex = 12;
@@ -229,16 +232,15 @@
             // 
             arrivalTimePicker.Anchor = AnchorStyles.Left;
             arrivalTimePicker.Format = DateTimePickerFormat.Time;
-            arrivalTimePicker.Location = new Point(152, 48);
-            arrivalTimePicker.MinDate = new DateTime(2025, 10, 17, 0, 0, 0, 0);
+            arrivalTimePicker.Location = new Point(162, 48);
             arrivalTimePicker.Name = "arrivalTimePicker";
-            arrivalTimePicker.Size = new Size(183, 23);
+            arrivalTimePicker.Size = new Size(156, 23);
             arrivalTimePicker.TabIndex = 13;
             // 
             // numberOfPassengersPicker
             // 
             numberOfPassengersPicker.Anchor = AnchorStyles.Left;
-            numberOfPassengersPicker.Location = new Point(152, 88);
+            numberOfPassengersPicker.Location = new Point(162, 88);
             numberOfPassengersPicker.Name = "numberOfPassengersPicker";
             numberOfPassengersPicker.Size = new Size(120, 23);
             numberOfPassengersPicker.TabIndex = 8;
@@ -279,6 +281,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 13.1805153F));
             tableLayoutPanel2.Size = new Size(405, 401);
             tableLayoutPanel2.TabIndex = 4;
+            tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
             // tableLayoutPanel3
             // 
@@ -295,6 +298,11 @@
             tableLayoutPanel3.Size = new Size(200, 32);
             tableLayoutPanel3.TabIndex = 2;
             // 
+            // errorProvider
+            // 
+            errorProvider.BlinkRate = 1;
+            errorProvider.ContainerControl = this;
+            // 
             // EditListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -307,6 +315,7 @@
             Name = "EditListForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Добавление/редактирование";
+            Load += EditListForm_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
@@ -317,6 +326,7 @@
             ((System.ComponentModel.ISupportInitialize)numberOfPassengersPicker).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)errorProvider).EndInit();
             ResumeLayout(false);
         }
 
@@ -342,5 +352,6 @@
         private Button buttonClear;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
+        private ErrorProvider errorProvider;
     }
 }
