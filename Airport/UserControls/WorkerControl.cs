@@ -82,7 +82,7 @@ namespace Airport.UserControls
             {
                 return;
             }
-            flightRegistryService.DeleteFlight(selectedFlight.ID);
+            flightRegistryService.DeleteFlight(selectedFlight);
             UpdateData(); // сервис уже изменил коллекцию
         }
 

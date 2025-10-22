@@ -35,13 +35,9 @@ namespace Airport.Services
         /// Метод удаления рейса
         /// </summary>
         /// <param name="ID">Айди выбранного рейса, который хотим удалить</param>
-        public void DeleteFlight(Guid ID)
+        public void DeleteFlight(IFlightInfo flight)
         {
-            var flight = flights.Where(f => f.ID == ID).FirstOrDefault();
-            if (flight != null)
-            {
-                flights.Remove(flight);
-            }
+            flights.Remove(flight);
         }
     }
 }
