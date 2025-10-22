@@ -5,12 +5,16 @@ namespace Airport
 {
     public partial class MainForm : Form
     {
-
         private readonly WorkerControl workerControl;
+
         private readonly AdministratorControl administratorControl;
 
-
-        public MainForm(IEnumerable<IFlightInfo> flights, IFlightRegistryService flightRegistryService, IReportInfo reportingService)
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="flightRegistryService">Сервис ведения реестра рейсов</param>
+        /// <param name="reportingService">Сервис отчета</param>
+        public MainForm(IFlightRegistryService flightRegistryService, IReportInfo reportingService)
         {
             InitializeComponent();
 
@@ -24,7 +28,7 @@ namespace Airport
             administratorControl.OnExitClicked = () => CloseUserControl(administratorControl);
         }
 
-        private void buttonWorker_Click(object sender, EventArgs rrrrrrre)
+        private void buttonWorker_Click(object sender, EventArgs e)
         {
 
             ShowUserControl(workerControl);

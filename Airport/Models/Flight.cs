@@ -5,7 +5,6 @@ namespace Airport.Models
 {
     public class Flight : IFlightInfo
     {
-
         /// <summary>
         /// Конструктор
         /// </summary>

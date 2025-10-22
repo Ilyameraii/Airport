@@ -86,10 +86,14 @@ namespace Airport.UserControls
             UpdateData(); // сервис уже изменил коллекцию
         }
 
+        // выбор самолета для редактирования/удаления
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Игнорируем клик по заголовкам (e.RowIndex < 0)
-            if (e.RowIndex < 0) return;
+            if (e.RowIndex < 0)
+            {
+                return; 
+            }
 
             // Получаем строку, по которой кликнули
             var row = dataGridView.Rows[e.RowIndex];

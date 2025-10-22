@@ -68,7 +68,6 @@
             tableLayoutPanelInfo.RowStyles.Add(new RowStyle(SizeType.Percent, 20F));
             tableLayoutPanelInfo.Size = new Size(311, 145);
             tableLayoutPanelInfo.TabIndex = 0;
-            tableLayoutPanelInfo.Paint += tableLayoutPanel1_Paint;
             // 
             // textBoxTotalRevenue
             // 

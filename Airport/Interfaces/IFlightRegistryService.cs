@@ -2,7 +2,7 @@
 {
     public interface IFlightRegistryService
     {
-        IList<IFlightInfo> Flights { get; }
+        IEnumerable<IFlightInfo> Flights { get; }
         void AddFlight(IFlightInfo flight);
         void DeleteFlight(Guid ID);
     }

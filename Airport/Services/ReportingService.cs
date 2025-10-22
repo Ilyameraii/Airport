@@ -36,9 +36,5 @@ namespace Airport.Services
         /// Суммарная выручка
         /// </summary>
         public decimal TotalRevenue => flights.Sum(f => f.Revenue);
-
-
-
-
     }
 }

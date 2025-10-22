@@ -2,7 +2,6 @@
 using Airport.Interfaces;
 using Airport.Models;
 using System.ComponentModel.DataAnnotations;
-using System.Windows.Forms;
 
 namespace Airport.Forms
 {
@@ -32,7 +31,6 @@ namespace Airport.Forms
 
         }
 
-
         /// <summary>
         /// Результирующий рейс
         /// </summary>
@@ -45,6 +43,7 @@ namespace Airport.Forms
             // Заполнение данных рейса из введенных значений
             ResultFlight = currentFlight;
         }
+
         private void AddBindingsForControls()
         {
             airplaneTypePicker.AddBindings(x => x.Text, currentFlight, c => c.AirplaneType, errorProvider);
@@ -97,12 +96,5 @@ namespace Airport.Forms
             crewTaxPicker.Value = 0;
             servicePercentagePicker.Value = 0;
         }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-
     }
 }

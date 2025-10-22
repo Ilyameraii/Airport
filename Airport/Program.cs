@@ -22,7 +22,7 @@ namespace Airport
             var flightRegistryService = new FlightRegistryService(flights);
             var reportingService = new ReportingService(flights);
 
-            Application.Run(new MainForm(flights, flightRegistryService, reportingService));
+            Application.Run(new MainForm(flightRegistryService, reportingService));
         }
     }
 }

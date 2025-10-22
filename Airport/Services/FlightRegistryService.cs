@@ -7,6 +7,7 @@ namespace Airport.Services
     internal class FlightRegistryService : IFlightRegistryService
     {
         private readonly BindingList<IFlightInfo> flights = new();
+
         /// <summary>
         /// Конструктор
         /// </summary>
@@ -15,12 +16,25 @@ namespace Airport.Services
         {
             this.flights = flights ?? throw new ArgumentNullException(nameof(flights));
         }
-        public IList<IFlightInfo> Flights => flights;
+
+        /// <summary>
+        ///  Возвращает коллекцию информации о рейсах.
+        /// </summary>
+        public IEnumerable<IFlightInfo> Flights => flights;
+
+        /// <summary>
+        /// Метод добавления рейсов
+        /// </summary>
+        /// <param name="flight">Рейс, который хотим добавить</param>
         public void AddFlight(IFlightInfo flight)
         {
             flights.Add(flight);
         }
 
+        /// <summary>
+        /// Метод удаления рейса
+        /// </summary>
+        /// <param name="ID">Айди выбранного рейса, который хотим удалить</param>
         public void DeleteFlight(Guid ID)
         {
             var flight = flights.Where(f => f.ID == ID).FirstOrDefault();

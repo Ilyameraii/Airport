@@ -7,6 +7,11 @@ namespace Airport.UserControls
     public partial class AdministratorControl : UserControl
     {
         private readonly IReportInfo reportingService;
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="reportingService">Сервис отчета</param>
         public AdministratorControl(IReportInfo reportingService)
         {
             InitializeComponent();
@@ -15,7 +20,9 @@ namespace Airport.UserControls
             RefreshData(); // инициализация
         }
 
-        // 🔁 Публичный метод для обновления
+        /// <summary>
+        /// Метод для обновления данных отчета
+        /// </summary>
         public void RefreshData()
         {
             // Просто перечитываем значения из сервиса
@@ -29,11 +36,6 @@ namespace Airport.UserControls
         /// Событие закрытия этого контрола
         /// </summary>
         public Action? OnExitClicked { get; set; }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void buttonGoBack_Click(object sender, EventArgs e)
         {

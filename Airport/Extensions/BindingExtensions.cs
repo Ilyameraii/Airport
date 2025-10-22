@@ -1,7 +1,5 @@
-﻿using Airport.Interfaces;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
-using System.Windows.Forms;
 
 namespace Airport.Extensions
 {
@@ -43,7 +41,9 @@ namespace Airport.Extensions
             var sourcePropertyName = GetPropertyName(sourceProperty);
 
             if (controlPropertyName == null || sourcePropertyName == null)
+            {
                 return;
+            }
 
             control.DataBindings.Add(controlPropertyName, dataSource, sourcePropertyName);
 
