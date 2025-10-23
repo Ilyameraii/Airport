@@ -1,4 +1,4 @@
-using Airport.Interfaces;
+п»їusing Airport.Interfaces;
 using Airport.Models;
 using Airport.Services;
 using System.ComponentModel;
@@ -17,7 +17,7 @@ namespace Airport
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // Созадем зависимости вручнук
+            // РЎРѕР·РґР°РµРј Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РІСЂСѓС‡РЅСѓСЋ
             var flights = new BindingList<IFlightInfo>();
             var flightRegistryService = new FlightRegistryService(flights);
             var reportingService = new ReportingService(flights);
