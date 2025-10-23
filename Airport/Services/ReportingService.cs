@@ -1,5 +1,4 @@
 ﻿using Airport.Interfaces;
-using Airport.Models;
 using System.ComponentModel;
 
 namespace Airport.Services
@@ -35,6 +34,6 @@ namespace Airport.Services
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public decimal TotalRevenue => flights.Sum(f => f.Revenue);
+        public decimal TotalRevenue => flights.Sum(f => f.Revenue); 
     }
 }
