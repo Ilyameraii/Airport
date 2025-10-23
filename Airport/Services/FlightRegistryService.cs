@@ -34,7 +34,7 @@ namespace Airport.Services
         /// <summary>
         /// Метод удаления рейса
         /// </summary>
-        /// <param name="ID">Айди выбранного рейса, который хотим удалить</param>
+        /// <param name="flight">Выбранный рейс, который хотим удалить</param>
         public void DeleteFlight(IFlightInfo flight)
         {
             flights.Remove(flight);
