@@ -17,7 +17,7 @@ namespace Airport
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
 
-            // Создаём зависимости вручную
+            // Созадем зависимости вручнук
             var flights = new BindingList<IFlightInfo>();
             var flightRegistryService = new FlightRegistryService(flights);
             var reportingService = new ReportingService(flights);
