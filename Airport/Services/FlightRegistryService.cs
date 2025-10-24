@@ -5,29 +5,28 @@ namespace Airport.Services
 {
     internal class FlightRegistryService : IFlightRegistryService
     {
-        private readonly BindingList<IFlightInfo> flights;
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flights">Лист рейсов</param>   
+        /// <param name="flight">Рейс</param>   
         public FlightRegistryService(BindingList<IFlightInfo> flights)
         {
-            this.flights = flights ?? throw new ArgumentNullException(nameof(flights));
+            Flights = flights;
         }
 
         /// <summary>
         ///  Возвращает коллекцию информации о рейсах.
         /// </summary>
-        public IEnumerable<IFlightInfo> Flights => flights;
+        public BindingList<IFlightInfo> Flights { get; private set; }
 
         /// <summary>
-        /// Метод добавления рейса
+        /// Метод добавления рейсов
         /// </summary>
         /// <param name="flight">Рейс, который хотим добавить</param>
         public void AddFlight(IFlightInfo flight)
         {
-            flights.Add(flight);
+            Flights.Add(flight);
         }
 
         /// <summary>
@@ -36,7 +35,7 @@ namespace Airport.Services
         /// <param name="flight">Выбранный рейс, который хотим удалить</param>
         public void DeleteFlight(IFlightInfo flight)
         {
-            flights.Remove(flight);
+            Flights.Remove(flight);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Airport.Interfaces
+﻿using System.ComponentModel;
+
+namespace Airport.Interfaces
 {
     /// <summary>
     /// Интерфейс, предоставляющий функциональность для управления реестром рейсов:
@@ -10,7 +12,7 @@
         /// <summary>
         ///  Возвращает коллекцию информации о рейсах.
         /// </summary>
-        IEnumerable<IFlightInfo> Flights { get; }
+        BindingList<IFlightInfo> Flights { get; }
 
         /// <summary>
         /// Метод добавления рейса
