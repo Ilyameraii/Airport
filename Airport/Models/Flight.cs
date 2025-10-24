@@ -3,13 +3,16 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Airport.Models
 {
+    /// <summary>
+    /// Модель рейса
+    /// </summary>
     public class Flight : IFlightInfo
     {
         /// <summary>
         /// Конструктор
         /// </summary>
         public Flight() {
-            ID = Guid.NewGuid();
+            Id = Guid.NewGuid();
             AirplaneType = "Неизвестный";
             ArrivalTime = DateTime.Now;
             NumberOfPassengers = 1;
@@ -20,7 +23,7 @@ namespace Airport.Models
         /// <summary>
         /// Айди рейса
         /// </summary>
-        public Guid ID { get; }
+        public Guid Id { get; }
 
         /// <summary>
         /// Тип самолета

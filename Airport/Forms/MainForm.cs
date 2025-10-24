@@ -1,8 +1,11 @@
-using Airport.Interfaces;
+﻿using Airport.Interfaces;
 using Airport.UserControls;
 
 namespace Airport
 {
+    /// <summary>
+    /// Главная форма, для ведения реестра рейсов и просмотра отчетов о рейсах
+    /// </summary>
     public partial class MainForm : Form
     {
         private readonly WorkerControl workerControl;
@@ -10,10 +13,10 @@ namespace Airport
         private readonly AdministratorControl administratorControl;
 
         /// <summary>
-        /// �����������
+        /// Конструктор
         /// </summary>
-        /// <param name="flightRegistryService">������ ������� ������� ������</param>
-        /// <param name="reportingService">������ ������</param>
+        /// <param name="flightRegistryService">Сервис ведения реестра рейсов</param>
+        /// <param name="reportingService">Сервис отчета</param>
         public MainForm(IFlightRegistryService flightRegistryService, IReportInfo reportingService)
         {
             InitializeComponent();

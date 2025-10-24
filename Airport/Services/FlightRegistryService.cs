@@ -5,12 +5,12 @@ namespace Airport.Services
 {
     internal class FlightRegistryService : IFlightRegistryService
     {
-        private readonly BindingList<IFlightInfo> flights = new();
+        private readonly BindingList<IFlightInfo> flights;
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flight">Рейс</param>   
+        /// <param name="flights">Лист рейсов</param>   
         public FlightRegistryService(BindingList<IFlightInfo> flights)
         {
             this.flights = flights ?? throw new ArgumentNullException(nameof(flights));
@@ -22,7 +22,7 @@ namespace Airport.Services
         public IEnumerable<IFlightInfo> Flights => flights;
 
         /// <summary>
-        /// Метод добавления рейсов
+        /// Метод добавления рейса
         /// </summary>
         /// <param name="flight">Рейс, который хотим добавить</param>
         public void AddFlight(IFlightInfo flight)

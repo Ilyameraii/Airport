@@ -2,6 +2,9 @@
 
 namespace Airport.UserControls
 {
+    /// <summary>
+    /// UI администратора, который показывает отчет реестра
+    /// </summary>
     public partial class AdministratorControl : UserControl
     {
         private readonly IReportInfo reportingService;

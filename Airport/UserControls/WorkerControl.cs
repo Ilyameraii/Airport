@@ -3,13 +3,16 @@ using Airport.Interfaces;
 
 namespace Airport.UserControls
 {
+    /// <summary>
+    /// UI работника, в котором можно управлять реестром рейсов и просматривать информацию об этом реестре
+    /// </summary>
     public partial class WorkerControl : UserControl
     {
         private readonly BindingSource bindingSource = new();
 
-        private readonly IFlightRegistryService flightRegistryService= null!;
+        private readonly IFlightRegistryService flightRegistryService;
 
-        private IFlightInfo? selectedFlight = null;
+        private IFlightInfo? selectedFlight;
 
         /// <summary>
         /// Конструктор
