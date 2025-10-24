@@ -12,7 +12,11 @@ namespace Airport
 
         private readonly AdministratorControl administratorControl;
 
-        
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="flightRegistryService">Сервис ведения реестра рейсов</param>
+        /// <param name="reportingService">Сервис отчета реестра</param>
         public MainForm(IFlightRegistryService flightRegistryService, IReportInfo reportingService)
         {
             InitializeComponent();
