@@ -18,10 +18,9 @@ namespace Airport
 
             // Создаем зависимости вручную
             var flights = new BindingList<IFlightInfo>();
-            var flightRegistryService = new FlightRegistryService(flights);
             var reportingService = new ReportingService(flights);
 
-            Application.Run(new MainForm(flightRegistryService, reportingService));
+            Application.Run(new MainForm(flights, reportingService));
         }
     }
 }

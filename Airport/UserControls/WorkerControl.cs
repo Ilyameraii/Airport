@@ -1,5 +1,6 @@
 ﻿using Airport.Forms;
 using Airport.Interfaces;
+using System.ComponentModel;
 
 namespace Airport.UserControls
 {
@@ -10,24 +11,21 @@ namespace Airport.UserControls
     {
         private readonly BindingSource bindingSource = new();
 
-        private readonly IFlightRegistryService flightRegistryService;
-
         private IFlightInfo? selectedFlight;
+
+        private BindingList<IFlightInfo> flights;
 
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flightRegistryService">Сервис реестра рейсов</param>
         /// <param name="flights">Список рейсов</param>
-        public WorkerControl(IFlightRegistryService flightRegistryService)
+        public WorkerControl(BindingList<IFlightInfo> flights)
         {
             InitializeComponent();
-
-            // устанавливаем сервис
-            this.flightRegistryService = flightRegistryService;
-
+            
+            this.flights = flights;
             // устанавливаем источник datagridview через BindingSource
-            bindingSource.DataSource = flightRegistryService.Flights;
+            bindingSource.DataSource = flights;
             dataGridView.DataSource = bindingSource;
         }
 
@@ -56,9 +54,8 @@ namespace Airport.UserControls
                 {
                     return;
                 }
-                flightRegistryService.Flights.Add(editListForm.ResultFlight);
-                UpdateData(); // сервис уже изменил коллекцию
-            }
+                flights.Add(editListForm.ResultFlight);
+                UpdateData(); 
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
@@ -71,7 +68,7 @@ namespace Airport.UserControls
             using var editListForm = new EditListForm(selectedFlight);
             if (editListForm.ShowDialog() == DialogResult.OK)
             {
-                UpdateData(); // сервис уже изменил коллекцию
+                UpdateData();
             }
         }
 
@@ -82,8 +79,8 @@ namespace Airport.UserControls
             {
                 return;
             }
-            flightRegistryService.Flights.Remove(selectedFlight);
-            UpdateData(); // сервис уже изменил коллекцию
+            flights.Remove(selectedFlight);
+            UpdateData();
         }
 
         // выбор самолета для редактирования/удаления

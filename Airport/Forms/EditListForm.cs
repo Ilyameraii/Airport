@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Airport.Forms
 {
     /// <summary>
-    /// Форма для добавления и редактирования рейсов
+    /// Форма для добавления и редактирования рейсов    
     /// </summary>
     public partial class EditListForm : Form
     {
