@@ -39,7 +39,6 @@ namespace Airport.Forms
         private void EditListForm_Load(object sender, EventArgs e)
         {
             AddBindingsForControls();
-            arrivalTimePicker.MinDate = DateTime.Now;
             // Заполнение данных рейса из введенных значений
             ResultFlight = currentFlight;
         }
