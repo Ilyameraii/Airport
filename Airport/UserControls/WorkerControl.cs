@@ -55,7 +55,8 @@ namespace Airport.UserControls
                     return;
                 }
                 flights.Add(editListForm.ResultFlight);
-                UpdateData(); 
+                UpdateData();
+            }
         }
 
         private void buttonEdit_Click(object sender, EventArgs e)
