@@ -56,7 +56,7 @@ namespace Airport.UserControls
                 {
                     return;
                 }
-                flightRegistryService.AddFlight(editListForm.ResultFlight);
+                flightRegistryService.Flights.Add(editListForm.ResultFlight);
                 UpdateData(); // сервис уже изменил коллекцию
             }
         }
@@ -82,7 +82,7 @@ namespace Airport.UserControls
             {
                 return;
             }
-            flightRegistryService.DeleteFlight(selectedFlight);
+            flightRegistryService.Flights.Remove(selectedFlight);
             UpdateData(); // сервис уже изменил коллекцию
         }
 

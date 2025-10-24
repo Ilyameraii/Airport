@@ -13,17 +13,5 @@ namespace Airport.Interfaces
         ///  Возвращает коллекцию информации о рейсах.
         /// </summary>
         BindingList<IFlightInfo> Flights { get; }
-
-        /// <summary>
-        /// Метод добавления рейса
-        /// </summary>
-        /// <param name="flight">Рейс, который хотим добавить</param>
-        void AddFlight(IFlightInfo flight);
-
-        /// <summary>
-        /// Метод удаления рейса
-        /// </summary>
-        /// <param name="flight">Выбранный рейс, который хотим удалить</param>
-        void DeleteFlight(IFlightInfo flight);
     }
 }
