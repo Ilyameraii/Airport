@@ -25,17 +25,12 @@ namespace Airport.UserControls
             
             this.flights = flights;
 
-
             dataGridView.AutoGenerateColumns = false;
             // устанавливаем источник datagridview через BindingSource
             bindingSource.DataSource = flights;
             dataGridView.DataSource = bindingSource;
 
-
             GenerateFieldsOfDataGridView();
-
-
-
         }
 
         private void GenerateFieldsOfDataGridView()
