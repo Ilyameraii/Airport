@@ -68,10 +68,5 @@ namespace Airport.Models
         /// </summary>
         [Required(ErrorMessage = "Процент обслуживания обязателен для заполнения")]
         public decimal ServicePercentage { get; set; }
-
-        /// <summary>
-        /// Выручка
-        /// </summary>
-        public decimal Revenue => (NumberOfPassengers * PassengerTax + NumberOfCrew * CrewTax) * (1.0m + ServicePercentage);
     }
 }

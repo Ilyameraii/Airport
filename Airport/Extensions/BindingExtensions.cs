@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Airport.Extensions
 {
@@ -72,8 +73,13 @@ namespace Airport.Extensions
             var results = new List<ValidationResult>();
             Validator.TryValidateObject(dataSource, context, results, true);
 
-            var error = results.FirstOrDefault(r => r.MemberNames.Contains(propertyName));
-            errorProvider.SetError(control, error?.ErrorMessage ?? "");
+            var errorMessages = results
+                .Where(r => r.MemberNames.Contains(propertyName))
+                .Select(r => r.ErrorMessage)
+                .Where(msg => !string.IsNullOrEmpty(msg));
+
+            var errorMessage = string.Join(Environment.NewLine, errorMessages);
+            errorProvider.SetError(control, errorMessage);
         }
         private static string GetPropertyName<T, TProperty>(Expression<Func<T, TProperty>> sourceProperty)
 

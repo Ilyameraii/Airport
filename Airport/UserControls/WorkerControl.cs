@@ -24,9 +24,95 @@ namespace Airport.UserControls
             InitializeComponent();
             
             this.flights = flights;
+
+
+            dataGridView.AutoGenerateColumns = false;
             // устанавливаем источник datagridview через BindingSource
             bindingSource.DataSource = flights;
             dataGridView.DataSource = bindingSource;
+
+
+            GenerateFieldsOfDataGridView();
+
+
+
+        }
+
+        private void GenerateFieldsOfDataGridView()
+        {
+            // Стандартные колонки (привязаны к свойствам IFlightInfo)
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.AirplaneType),
+                HeaderText = "Тип самолёта",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.ArrivalTime),
+                HeaderText = "Время прибытия",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.NumberOfPassengers),
+                HeaderText = "Пассажиров",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.PassengerTax),
+                HeaderText = "Сбор на пассажира",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.NumberOfCrew),
+                HeaderText = "Экипажа",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.CrewTax),
+                HeaderText = "Сбор на экипаж",
+                ReadOnly = true
+            });
+            dataGridView.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = nameof(IFlightInfo.ServicePercentage),
+                HeaderText = "Процент за обслуживание",
+                ReadOnly = true
+            });
+            // НЕПРИВЯЗАННАЯ колонка для выручки
+            var revenueColumn = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Выручка",
+                Name = "RevenueColumn",
+                ReadOnly = true
+            };
+            dataGridView.Columns.Add(revenueColumn);
+
+            // Подписываемся на событие для вычисления значения
+            dataGridView.CellFormatting += DataGridView_CellFormatting;
+        }
+
+        private void DataGridView_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // Проверяем, что форматируем именно колонку выручки
+            if (dataGridView.Columns[e.ColumnIndex].Name == "RevenueColumn")
+            {
+                if (dataGridView.Rows[e.RowIndex].DataBoundItem is IFlightInfo flight)
+                {
+                    // 🔢 Вычисляем выручку здесь — логика "вынесена из модели"
+                    var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
+                                      flight.NumberOfCrew * flight.CrewTax;
+                    var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
+                    var revenue = Math.Round(baseRevenue + surcharge, 2);
+
+                    e.Value = revenue.ToString("C"); // или просто revenue, если колонка decimal
+                    e.FormattingApplied = true;
+                }
+            }
         }
 
         /// <summary>

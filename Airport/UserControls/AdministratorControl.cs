@@ -30,7 +30,7 @@ namespace Airport.UserControls
             textBoxTotalPassangers.Text = reportingService.TotalPassangers.ToString();
             textBoxTotalArrivingFlights.Text = reportingService.TotalArrivingFlights.ToString();
             textBoxTotalCrew.Text = reportingService.TotalCrew.ToString();
-            textBoxTotalRevenue.Text = reportingService.TotalRevenue.ToString();
+            textBoxTotalRevenue.Text = reportingService.TotalRevenue.ToString("C");
         }
 
         /// <summary>

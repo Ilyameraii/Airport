@@ -1,4 +1,5 @@
 ﻿using Airport.Interfaces;
+using Airport.Models;
 using System.ComponentModel;
 
 namespace Airport.Services
@@ -34,6 +35,20 @@ namespace Airport.Services
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public decimal TotalRevenue => flights.Sum(f => f.Revenue); 
+        public decimal TotalRevenue
+        {
+            get
+            {
+                decimal result = 0;
+                foreach (var flight in flights)
+                {
+                    var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
+                                      flight.NumberOfCrew * flight.CrewTax;
+                    var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
+                    result += baseRevenue + surcharge;
+                }
+                return Math.Round(result, 2);
+            }
+        }
     }
 }

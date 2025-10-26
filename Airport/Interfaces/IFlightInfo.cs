@@ -44,10 +44,5 @@
         /// Процент надбавки за обслуживание
         /// </summary>
         decimal ServicePercentage { get; }
-
-        /// <summary>
-        /// Выручка
-        /// </summary>
-        decimal Revenue { get; }
     }
 }
