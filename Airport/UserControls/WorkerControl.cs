@@ -98,13 +98,12 @@ namespace Airport.UserControls
             {
                 if (dataGridView.Rows[e.RowIndex].DataBoundItem is IFlightInfo flight)
                 {
-                    // 🔢 Вычисляем выручку здесь — логика "вынесена из модели"
                     var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
                                       flight.NumberOfCrew * flight.CrewTax;
                     var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
                     var revenue = Math.Round(baseRevenue + surcharge, 2);
 
-                    e.Value = revenue.ToString("C"); // или просто revenue, если колонка decimal
+                    e.Value = revenue.ToString("C");
                     e.FormattingApplied = true;
                 }
             }
