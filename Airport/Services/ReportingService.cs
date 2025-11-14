@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace Airport.Services
 {
+    /// <summary>
+    /// Сервис составления отчета о рейсах
+    /// </summary>
     internal class ReportingService : IReportInfo
     {
         private readonly BindingList<IFlightInfo> flights;

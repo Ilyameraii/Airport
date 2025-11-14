@@ -13,7 +13,7 @@ namespace Airport.Models
         /// </summary>
         public Flight() {
             Id = Guid.NewGuid();
-            AirplaneType = "Неизвестный";
+            AirplaneType = AirplaneType.Boing;
             ArrivalTime = DateTime.Now;
             NumberOfPassengers = 1;
             NumberOfCrew = 1;
@@ -29,7 +29,7 @@ namespace Airport.Models
         /// Тип самолета
         /// </summary>
         [Required(ErrorMessage = "Тип обязателен для заполнения")]
-        public string AirplaneType { get; set; }
+        public AirplaneType AirplaneType { get; set; }
 
         /// <summary>
         /// Время прибытия

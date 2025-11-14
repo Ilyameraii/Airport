@@ -1,4 +1,4 @@
-﻿namespace Airport
+﻿namespace Airport.Forms
 {
     partial class MainForm
     {

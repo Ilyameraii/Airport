@@ -9,10 +9,13 @@ namespace Airport.UserControls
     /// </summary>
     public partial class WorkerControl : UserControl
     {
+        /// <summary>
+        /// Событие закрытия этого контрола
+        /// </summary>
+        public Action? OnExitClicked { get; set; }
+
         private readonly BindingSource bindingSource = new();
-
         private IFlightInfo? selectedFlight;
-
         private BindingList<IFlightInfo> flights;
 
         /// <summary>
@@ -109,10 +112,7 @@ namespace Airport.UserControls
             }
         }
 
-        /// <summary>
-        /// Событие закрытия этого контрола
-        /// </summary>
-        public Action? OnExitClicked { get; set; }
+        
         
         private void buttonGoBack_Click(object sender, EventArgs e)
         {

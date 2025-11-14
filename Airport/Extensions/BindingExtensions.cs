@@ -3,6 +3,9 @@ using System.Linq.Expressions;
 
 namespace Airport.Extensions
 {
+    /// <summary>
+    /// Расширение для удобной привязки данных и проверки ошибок ввода к элементам формы
+    /// </summary>
     internal static class BindingExtensions
     {
         /// <summary>
@@ -40,11 +43,6 @@ namespace Airport.Extensions
             var controlPropertyName = GetPropertyName(controlProperty);
             var sourcePropertyName = GetPropertyName(sourceProperty);
 
-            if (controlPropertyName == null || sourcePropertyName == null)
-            {
-                return;
-            }
-
             control.DataBindings.Add(controlPropertyName, dataSource, sourcePropertyName);
 
             if (errorProvider != null)
@@ -70,6 +68,7 @@ namespace Airport.Extensions
         {
             var context = new ValidationContext(dataSource);
             var results = new List<ValidationResult>();
+
             Validator.TryValidateObject(dataSource, context, results, true);
 
             var errorMessages = results
@@ -78,10 +77,10 @@ namespace Airport.Extensions
                 .Where(msg => !string.IsNullOrEmpty(msg));
 
             var errorMessage = string.Join(Environment.NewLine, errorMessages);
+
             errorProvider.SetError(control, errorMessage);
         }
         private static string GetPropertyName<T, TProperty>(Expression<Func<T, TProperty>> sourceProperty)
-
         {
             if (sourceProperty.Body is MemberExpression member)
             {
@@ -89,7 +88,5 @@ namespace Airport.Extensions
             }
             throw new ArgumentException("Expression must be a member access.", nameof(sourceProperty));
         }
-
-
     }
 }

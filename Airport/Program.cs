@@ -1,9 +1,13 @@
 ﻿using Airport.Interfaces;
 using Airport.Services;
 using System.ComponentModel;
+using Airport.Forms;
 
 namespace Airport
 {
+    /// <summary>
+    /// Класс Program - точка входа в программу
+    /// </summary>
     internal static class Program
     {
         /// <summary>

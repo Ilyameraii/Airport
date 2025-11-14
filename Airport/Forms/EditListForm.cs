@@ -41,14 +41,14 @@ namespace Airport.Forms
 
         private void EditListForm_Load(object sender, EventArgs e)
         {
+            airplaneTypePicker.DataSource = Enum.GetValues(typeof(AirplaneType));
             AddBindingsForControls();
             // Заполнение данных рейса из введенных значений
             ResultFlight = currentFlight;
         }
-
         private void AddBindingsForControls()
         {
-            airplaneTypePicker.AddBindings(x => x.Text, currentFlight, c => c.AirplaneType, errorProvider);
+            airplaneTypePicker.AddBindings(x => x.SelectedItem, currentFlight, c => c.AirplaneType, errorProvider);
             arrivalTimePicker.AddBindings(x => x.Value, currentFlight, c => c.ArrivalTime, errorProvider);
             numberOfPassengersPicker.AddBindings(x => x.Value, currentFlight, c => c.NumberOfPassengers, errorProvider);
             passengerTaxPicker.AddBindings(x => x.Value, currentFlight, c => c.PassengerTax, errorProvider);

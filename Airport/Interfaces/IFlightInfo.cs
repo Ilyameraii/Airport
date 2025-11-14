@@ -1,4 +1,6 @@
-﻿namespace Airport.Interfaces
+﻿using Airport.Models;
+
+namespace Airport.Interfaces
 {
     /// <summary>
     /// Интерфейс, предоставляющий информацию о рейсе
@@ -13,7 +15,7 @@
         /// <summary>
         /// Тип самолета
         /// </summary>
-        string AirplaneType { get; }
+        AirplaneType AirplaneType { get; }
 
         /// <summary>
         /// Время прибытия

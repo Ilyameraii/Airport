@@ -38,13 +38,13 @@
             labelCountCrew = new Label();
             labelTaxCrew = new Label();
             labelPercent = new Label();
-            airplaneTypePicker = new TextBox();
             passengerTaxPicker = new NumericUpDown();
             numberOfCrewPicker = new NumericUpDown();
             crewTaxPicker = new NumericUpDown();
             servicePercentagePicker = new NumericUpDown();
             arrivalTimePicker = new DateTimePicker();
             numberOfPassengersPicker = new NumericUpDown();
+            airplaneTypePicker = new ComboBox();
             buttonSave = new Button();
             buttonClear = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -87,13 +87,13 @@
             tableLayoutPanel1.Controls.Add(labelCountCrew, 0, 4);
             tableLayoutPanel1.Controls.Add(labelTaxCrew, 0, 5);
             tableLayoutPanel1.Controls.Add(labelPercent, 0, 6);
-            tableLayoutPanel1.Controls.Add(airplaneTypePicker, 1, 0);
             tableLayoutPanel1.Controls.Add(passengerTaxPicker, 1, 3);
             tableLayoutPanel1.Controls.Add(numberOfCrewPicker, 1, 4);
             tableLayoutPanel1.Controls.Add(crewTaxPicker, 1, 5);
             tableLayoutPanel1.Controls.Add(servicePercentagePicker, 1, 6);
             tableLayoutPanel1.Controls.Add(arrivalTimePicker, 1, 1);
             tableLayoutPanel1.Controls.Add(numberOfPassengersPicker, 1, 2);
+            tableLayoutPanel1.Controls.Add(airplaneTypePicker, 1, 0);
             tableLayoutPanel1.Location = new Point(22, 30);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 7;
@@ -184,14 +184,6 @@
             labelPercent.TabIndex = 6;
             labelPercent.Text = "Процент надбавки за обслуживание";
             // 
-            // airplaneTypePicker
-            // 
-            airplaneTypePicker.Anchor = AnchorStyles.Left;
-            airplaneTypePicker.Location = new Point(162, 8);
-            airplaneTypePicker.Name = "airplaneTypePicker";
-            airplaneTypePicker.Size = new Size(156, 23);
-            airplaneTypePicker.TabIndex = 7;
-            // 
             // passengerTaxPicker
             // 
             passengerTaxPicker.Anchor = AnchorStyles.Left;
@@ -244,6 +236,15 @@
             numberOfPassengersPicker.Name = "numberOfPassengersPicker";
             numberOfPassengersPicker.Size = new Size(120, 23);
             numberOfPassengersPicker.TabIndex = 8;
+            // 
+            // airplaneTypePicker
+            // 
+            airplaneTypePicker.DropDownStyle = ComboBoxStyle.DropDownList;
+            airplaneTypePicker.FormattingEnabled = true;
+            airplaneTypePicker.Location = new Point(162, 3);
+            airplaneTypePicker.Name = "airplaneTypePicker";
+            airplaneTypePicker.Size = new Size(121, 23);
+            airplaneTypePicker.TabIndex = 14;
             // 
             // buttonSave
             // 
@@ -340,7 +341,6 @@
         private Label labelCountCrew;
         private Label labelTaxCrew;
         private Label labelPercent;
-        private TextBox airplaneTypePicker;
         private NumericUpDown passengerTaxPicker;
         private NumericUpDown numberOfCrewPicker;
         private NumericUpDown crewTaxPicker;
@@ -352,5 +352,6 @@
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
         private ErrorProvider errorProvider;
+        private ComboBox airplaneTypePicker;
     }
 }
