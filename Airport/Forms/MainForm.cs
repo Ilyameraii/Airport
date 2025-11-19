@@ -2,7 +2,7 @@
 using Airport.UserControls;
 using System.ComponentModel;
 
-namespace Airport
+namespace Airport.Forms
 {
     /// <summary>
     /// Главная форма, для ведения реестра рейсов и просмотра отчетов о рейсах
