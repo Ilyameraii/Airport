@@ -10,7 +10,6 @@ namespace Airport.Forms
     public partial class MainForm : Form
     {
         private readonly WorkerControl workerControl;
-
         private readonly AdministratorControl administratorControl;
 
         /// <summary>
@@ -48,6 +47,7 @@ namespace Airport.Forms
             }
 
         }
+
         private void CloseUserControl(UserControl userControl)
         {
             if (userControl != null)

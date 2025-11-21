@@ -45,6 +45,7 @@ namespace Airport.Forms
             // Заполнение данных рейса из введенных значений
             ResultFlight = currentFlight;
         }
+
         private void AddBindingsForControls()
         {
             airplaneTypePicker.AddBindings(x => x.SelectedItem, currentFlight, c => c.AirplaneType, errorProvider);
@@ -73,7 +74,7 @@ namespace Airport.Forms
             Close();
 
         }
-
+    
         private void buttonClear_Click(object sender, EventArgs e)
         {
             var dialogResult = MessageBox.Show("Вы уверены, что хотите очистить форму?", "Подтверждение",

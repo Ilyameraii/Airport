@@ -112,8 +112,6 @@ namespace Airport.UserControls
             }
         }
 
-        
-        
         private void buttonGoBack_Click(object sender, EventArgs e)
         {
             OnExitClicked?.Invoke();
