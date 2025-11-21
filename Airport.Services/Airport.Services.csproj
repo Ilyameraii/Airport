@@ -4,7 +4,7 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageId>MyStorage</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.0.2</Version>
 		<Authors>Ilya Bobrov IP-22-3</Authors>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
@@ -17,6 +17,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Airport.Services.Contracts\Airport.Services.Contracts.csproj" />
+		<ProjectReference Include="..\Airtport.Entites\Airtport.Entites.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
