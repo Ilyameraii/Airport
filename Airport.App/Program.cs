@@ -1,6 +1,4 @@
-﻿using Airport.Interfaces;
-using Airport.Services;
-using System.ComponentModel;
+﻿using Airport.Services;
 using Airport.Forms;
 
 namespace Airport
@@ -21,10 +19,9 @@ namespace Airport
             ApplicationConfiguration.Initialize();
 
             // Создаем зависимости вручную
-            var flights = new BindingList<IFlightInfo>();
-            var reportingService = new ReportingService(flights);
+            var inMemoryStorage = new InMemoryStorage();
 
-            Application.Run(new MainForm(flights, reportingService));
+            Application.Run(new MainForm(inMemoryStorage, inMemoryStorage));
         }
     }
 }

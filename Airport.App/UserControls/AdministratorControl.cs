@@ -1,4 +1,4 @@
-﻿using Airport.Interfaces;
+﻿using Airport.Services.Contracts;
 
 namespace Airport.UserControls
 {

@@ -1,6 +1,5 @@
-﻿using Airport.Extensions;
-using Airport.Interfaces;
-using Airport.Models;
+﻿using Airport.Entites.Models;
+using Airport.Extensions;
 using System.ComponentModel.DataAnnotations;
 
 namespace Airport.Forms
@@ -10,7 +9,7 @@ namespace Airport.Forms
     /// </summary>
     public partial class EditListForm : Form
     {
-        private readonly IFlightInfo currentFlight = new Flight();
+        private readonly Flight currentFlight = new Flight();
 
         /// <summary>
         /// Конструктор
@@ -25,7 +24,7 @@ namespace Airport.Forms
         /// Конструктор
         /// </summary>
         /// <param name="currentFlight">Выбранный для редактирования рейс</param>
-        public EditListForm(IFlightInfo currentFlight)
+        public EditListForm(Flight currentFlight)
         {
 
             InitializeComponent();
@@ -37,7 +36,7 @@ namespace Airport.Forms
         /// <summary>
         /// Результирующий рейс
         /// </summary>
-        public IFlightInfo? ResultFlight { get; private set; }
+        public Flight? ResultFlight { get; private set; }
 
         private void EditListForm_Load(object sender, EventArgs e)
         {

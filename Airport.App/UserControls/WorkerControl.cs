@@ -1,6 +1,6 @@
-﻿using Airport.Forms;
-using Airport.Interfaces;
-using System.ComponentModel;
+﻿using Airport.Entites.Models;
+using Airport.Forms;
+using Airport.Services.Contracts;
 
 namespace Airport.UserControls
 {
@@ -15,22 +15,22 @@ namespace Airport.UserControls
         public Action? OnExitClicked { get; set; }
 
         private readonly BindingSource bindingSource = new();
-        private IFlightInfo? selectedFlight;
-        private BindingList<IFlightInfo> flights;
+        private Flight? selectedFlight;
+        private readonly IFlightRegistryService flightRegistryService;
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="flights">Список рейсов</param>
-        public WorkerControl(BindingList<IFlightInfo> flights)
+        public WorkerControl(IFlightRegistryService flightRegistryService)
         {
             InitializeComponent();
             
-            this.flights = flights;
+            this.flightRegistryService = flightRegistryService;
 
             dataGridView.AutoGenerateColumns = false;
             // устанавливаем источник datagridview через BindingSource
-            bindingSource.DataSource = flights;
+            bindingSource.DataSource = flightRegistryService.GetAll();
             dataGridView.DataSource = bindingSource;
 
             GenerateFieldsOfDataGridView();
@@ -38,46 +38,46 @@ namespace Airport.UserControls
 
         private void GenerateFieldsOfDataGridView()
         {
-            // Стандартные колонки (привязаны к свойствам IFlightInfo)
+            // Стандартные колонки (привязаны к свойствам Flight)
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.AirplaneType),
+                DataPropertyName = nameof(Flight.AirplaneType),
                 HeaderText = "Тип самолёта",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.ArrivalTime),
+                DataPropertyName = nameof(Flight.ArrivalTime),
                 HeaderText = "Время прибытия",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.NumberOfPassengers),
+                DataPropertyName = nameof(Flight.NumberOfPassengers),
                 HeaderText = "Пассажиров",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.PassengerTax),
+                DataPropertyName = nameof(Flight.PassengerTax),
                 HeaderText = "Сбор на пассажира",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.NumberOfCrew),
+                DataPropertyName = nameof(Flight.NumberOfCrew),
                 HeaderText = "Экипажа",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.CrewTax),
+                DataPropertyName = nameof(Flight.CrewTax),
                 HeaderText = "Сбор на экипаж",
                 ReadOnly = true
             });
             dataGridView.Columns.Add(new DataGridViewTextBoxColumn
             {
-                DataPropertyName = nameof(IFlightInfo.ServicePercentage),
+                DataPropertyName = nameof(Flight.ServicePercentage),
                 HeaderText = "Процент за обслуживание",
                 ReadOnly = true
             });
@@ -99,7 +99,7 @@ namespace Airport.UserControls
             // Проверяем, что форматируем именно колонку выручки
             if (dataGridView.Columns[e.ColumnIndex].Name == "RevenueColumn")
             {
-                if (dataGridView.Rows[e.RowIndex].DataBoundItem is IFlightInfo flight)
+                if (dataGridView.Rows[e.RowIndex].DataBoundItem is Flight flight)
                 {
                     var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
                                       flight.NumberOfCrew * flight.CrewTax;
@@ -134,7 +134,7 @@ namespace Airport.UserControls
                 {
                     return;
                 }
-                flights.Add(editListForm.ResultFlight);
+                flightRegistryService.AddFlight(editListForm.ResultFlight);
                 UpdateData();
             }
         }
@@ -160,7 +160,7 @@ namespace Airport.UserControls
             {
                 return;
             }
-            flights.Remove(selectedFlight);
+            flightRegistryService.DeleteFlight(selectedFlight);
             UpdateData();
         }
 
@@ -177,7 +177,7 @@ namespace Airport.UserControls
             var row = dataGridView.Rows[e.RowIndex];
 
             // Получаем привязанный объект
-            if (row.DataBoundItem is IFlightInfo flight)
+            if (row.DataBoundItem is Flight flight)
             {
                 selectedFlight = flight;
             }

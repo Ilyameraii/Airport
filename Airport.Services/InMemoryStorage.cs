@@ -1,24 +1,29 @@
-﻿using Airport.Interfaces;
+﻿using Airport.Entites.Models;
+using Airport.Services.Contracts;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Airport.Services
 {
     /// <summary>
     /// Сервис составления отчета о рейсах
     /// </summary>
-    internal class ReportingService : IReportInfo
+    public class InMemoryStorage: IFlightRegistryService, IReportInfo
     {
-        private readonly BindingList<IFlightInfo> flights;
+        private readonly BindingList<Flight> flights = new();
 
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="flights">Список рейсов</param>
-        public ReportingService(BindingList<IFlightInfo> flights)
+        public void AddFlight(Flight flight)
         {
-            this.flights = flights;
+            flights.Add(flight);
         }
-
+        public void DeleteFlight(Flight flight)
+        {
+            flights.Remove(flight);
+        }
+        public BindingList<Flight> GetAll()
+        {
+            return flights;
+        }
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>

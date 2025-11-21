@@ -1,12 +1,11 @@
-﻿using Airport.Interfaces;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace Airport.Models
+namespace Airport.Entites.Models
 {
     /// <summary>
     /// Модель рейса
     /// </summary>
-    public class Flight : IFlightInfo
+    public class Flight
     {
         /// <summary>
         /// Конструктор

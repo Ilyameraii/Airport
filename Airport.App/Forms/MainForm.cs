@@ -1,6 +1,6 @@
-﻿using Airport.Interfaces;
+﻿
+using Airport.Services.Contracts;
 using Airport.UserControls;
-using System.ComponentModel;
 
 namespace Airport.Forms
 {
@@ -18,15 +18,15 @@ namespace Airport.Forms
         /// </summary>
         /// <param name="flights">Список рейсов</param>
         /// <param name="reportingService">Сервис отчета реестра</param>
-        public MainForm(BindingList<IFlightInfo> flights, IReportInfo reportingService)
+        public MainForm(IFlightRegistryService flightRegistryService, IReportInfo reportInfo)
         {
             InitializeComponent();
 
-            workerControl = new(flights);
+            workerControl = new(flightRegistryService);
             workerControl.Dock = DockStyle.Fill;
             workerControl.OnExitClicked = () => CloseUserControl(workerControl);
 
-            administratorControl = new(reportingService);
+            administratorControl = new(reportInfo);
             administratorControl.Dock = DockStyle.Fill;
 
             administratorControl.OnExitClicked = () => CloseUserControl(administratorControl);

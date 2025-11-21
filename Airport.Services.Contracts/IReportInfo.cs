@@ -1,4 +1,4 @@
-﻿namespace Airport.Interfaces
+﻿namespace Airport.Services.Contracts
 {
     /// <summary>
     /// Интерфейс, предоставляющий информацию для отчёта по рейсам
