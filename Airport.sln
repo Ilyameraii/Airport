@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airport.App", "Airport.App\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airtport.Entites", "Airtport.Entites\Airtport.Entites.csproj", "{F2137AE3-D3E1-4826-89D3-4C8B1727B694}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airport.Services", "Airport.Services\Airport.Services.csproj", "{79343B7A-C07D-4CF7-828C-3FED01940134}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Airport.Services.Contracts", "Airport.Services.Contracts\Airport.Services.Contracts.csproj", "{C808A8FA-2EBD-40D1-93FA-EF515F707701}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{F2137AE3-D3E1-4826-89D3-4C8B1727B694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2137AE3-D3E1-4826-89D3-4C8B1727B694}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2137AE3-D3E1-4826-89D3-4C8B1727B694}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79343B7A-C07D-4CF7-828C-3FED01940134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79343B7A-C07D-4CF7-828C-3FED01940134}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79343B7A-C07D-4CF7-828C-3FED01940134}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79343B7A-C07D-4CF7-828C-3FED01940134}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C808A8FA-2EBD-40D1-93FA-EF515F707701}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C808A8FA-2EBD-40D1-93FA-EF515F707701}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C808A8FA-2EBD-40D1-93FA-EF515F707701}.Release|Any CPU.ActiveCfg = Release|Any CPU
