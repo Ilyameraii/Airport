@@ -12,18 +12,33 @@ namespace Airport.Services
     {
         private readonly BindingList<Flight> flights = new();
 
+        /// <summary>
+        /// Добавление самолета
+        /// </summary>
+        /// <param name="flight">экземпляр самолета</param>
         public void AddFlight(Flight flight)
         {
             flights.Add(flight);
         }
+
+        /// <summary>
+        /// Удаление самолета
+        /// </summary>
+        /// <param name="flight">экземпляр самолета</param>
         public void DeleteFlight(Flight flight)
         {
             flights.Remove(flight);
         }
+
+        /// <summary>
+        /// Получение всего списка
+        /// </summary>
+        /// <returns></returns>
         public BindingList<Flight> GetAll()
         {
             return flights;
         }
+
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
