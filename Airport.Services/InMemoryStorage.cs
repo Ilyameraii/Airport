@@ -42,7 +42,7 @@ namespace Airport.Services
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public Task<int> TotalPassangers()
+        public Task<int> TotalPassangers(CancellationToken cancellationToken)
         {
             return Task.FromResult(flights.Sum(f => f.NumberOfPassengers));
         }
@@ -50,7 +50,7 @@ namespace Airport.Services
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public Task<int> TotalCrew()
+        public Task<int> TotalCrew(CancellationToken cancellationToken)
         {
             return Task.FromResult(flights.Sum(f => f.NumberOfCrew));
         }
@@ -58,7 +58,7 @@ namespace Airport.Services
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public Task<int> TotalArrivingFlights()
+        public Task<int> TotalArrivingFlights(CancellationToken cancellationToken)
         {
             return Task.FromResult(flights.Count());
         }
@@ -66,7 +66,7 @@ namespace Airport.Services
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public Task<decimal> TotalRevenue()
+        public Task<decimal> TotalRevenue(CancellationToken cancellationToken)
         {
             decimal result = 0;
             foreach (var flight in flights)
