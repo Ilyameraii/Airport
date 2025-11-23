@@ -9,21 +9,21 @@
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        int TotalPassangers { get; }
+        Task<int> TotalPassangers();
 
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        int TotalArrivingFlights { get; }
+        Task<int> TotalArrivingFlights();
 
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        int TotalCrew { get; }
+        Task<int> TotalCrew();
 
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        decimal TotalRevenue { get; }
+        Task<decimal> TotalRevenue();
     }
 }

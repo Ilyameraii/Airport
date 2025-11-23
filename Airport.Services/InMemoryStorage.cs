@@ -7,7 +7,7 @@ namespace Airport.Services
     /// <summary>
     /// Сервис составления отчета о рейсах
     /// </summary>
-    public class InMemoryStorage: IFlightRegistryService, IReportInfo
+    public class InMemoryStorage : IFlightRegistryService, IReportInfo
     {
         private readonly BindingList<Flight> flights = new();
 
@@ -42,35 +42,41 @@ namespace Airport.Services
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public int TotalPassangers => flights.Sum(f => f.NumberOfPassengers);
+        public Task<int> TotalPassangers()
+        {
+            return Task.FromResult(flights.Sum(f => f.NumberOfPassengers));
+        }
 
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public int TotalCrew => flights.Sum(f => f.NumberOfCrew);
+        public Task<int> TotalCrew()
+        {
+            return Task.FromResult(flights.Sum(f => f.NumberOfCrew));
+        }
 
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public int TotalArrivingFlights => flights.Count();
+        public Task<int> TotalArrivingFlights()
+        {
+            return Task.FromResult(flights.Count());
+        }
 
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public decimal TotalRevenue
+        public Task<decimal> TotalRevenue()
         {
-            get
+            decimal result = 0;
+            foreach (var flight in flights)
             {
-                decimal result = 0;
-                foreach (var flight in flights)
-                {
-                    var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
-                                      flight.NumberOfCrew * flight.CrewTax;
-                    var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
-                    result += baseRevenue + surcharge;
-                }
-                return Math.Round(result, 2);
+                var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
+                                  flight.NumberOfCrew * flight.CrewTax;
+                var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
+                result += baseRevenue + surcharge;
             }
+            return Task.FromResult(Math.Round(result, 2));
         }
     }
 }

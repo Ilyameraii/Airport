@@ -183,6 +183,7 @@
             Controls.Add(tableLayoutPanel2);
             Name = "AdministratorControl";
             Size = new Size(786, 460);
+            Load += AdministratorControl_Load;
             tableLayoutPanelInfo.ResumeLayout(false);
             tableLayoutPanelInfo.PerformLayout();
             tableLayoutPanel2.ResumeLayout(false);

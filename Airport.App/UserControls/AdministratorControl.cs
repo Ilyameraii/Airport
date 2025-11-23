@@ -18,19 +18,26 @@ namespace Airport.UserControls
             InitializeComponent();
 
             this.reportingService = reportingService;
-            RefreshData(); // инициализация
         }
-
+        private async void AdministratorControl_Load(object sender, EventArgs e)
+        {
+            await RefreshData();
+        }
         /// <summary>
         /// Метод для обновления данных отчета
         /// </summary>
-        public void RefreshData()
+        public async Task RefreshData()
         {
+            var totalPassangers = await reportingService.TotalPassangers();
+            var totalArrivingFlights = await reportingService.TotalArrivingFlights();
+            var totalCrew = await reportingService.TotalCrew();
+            var totalRevenue = await reportingService.TotalRevenue();
+
             // Просто перечитываем значения из сервиса
-            textBoxTotalPassangers.Text = reportingService.TotalPassangers.ToString();
-            textBoxTotalArrivingFlights.Text = reportingService.TotalArrivingFlights.ToString();
-            textBoxTotalCrew.Text = reportingService.TotalCrew.ToString();
-            textBoxTotalRevenue.Text = reportingService.TotalRevenue.ToString("C");
+            textBoxTotalPassangers.Text = totalPassangers.ToString();
+            textBoxTotalArrivingFlights.Text = totalArrivingFlights.ToString();
+            textBoxTotalCrew.Text = totalCrew.ToString();
+            textBoxTotalRevenue.Text = totalRevenue.ToString("C");
         }
 
         /// <summary>
@@ -42,5 +49,7 @@ namespace Airport.UserControls
         {
             OnExitClicked?.Invoke();
         }
+
+        
     }
 }
