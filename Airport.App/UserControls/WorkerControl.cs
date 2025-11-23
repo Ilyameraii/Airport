@@ -25,17 +25,18 @@ namespace Airport.UserControls
         public WorkerControl(IFlightRegistryService flightRegistryService)
         {
             InitializeComponent();
-            
-            this.flightRegistryService = flightRegistryService;
 
+            this.flightRegistryService = flightRegistryService;
+        }
+        private async void WorkerControl_Load(object sender, EventArgs e)
+        {
             dataGridView.AutoGenerateColumns = false;
             // устанавливаем источник datagridview через BindingSource
-            bindingSource.DataSource = flightRegistryService.GetAll();
+             bindingSource.DataSource = await flightRegistryService.GetAll(CancellationToken.None);
             dataGridView.DataSource = bindingSource;
 
             GenerateFieldsOfDataGridView();
         }
-
         private void GenerateFieldsOfDataGridView()
         {
             // Стандартные колонки (привязаны к свойствам Flight)
@@ -123,7 +124,7 @@ namespace Airport.UserControls
             bindingSource.ResetBindings(false);
         }
 
-        private void buttonAdd_Click(object sender, EventArgs e)
+        private async void buttonAdd_Click(object sender, EventArgs e)
         {
             using var editListForm = new EditListForm();
             if (editListForm.ShowDialog() == DialogResult.OK)
@@ -132,7 +133,7 @@ namespace Airport.UserControls
                 {
                     return;
                 }
-                flightRegistryService.AddFlight(editListForm.ResultFlight);
+                await flightRegistryService.AddFlight(editListForm.ResultFlight, CancellationToken.None);
                 UpdateData();
             }
         }
@@ -151,14 +152,14 @@ namespace Airport.UserControls
             }
         }
 
-        private void buttonDelete_Click(object sender, EventArgs e)
+        private async void buttonDelete_Click(object sender, EventArgs e)
         {
             // кнопка не будет срабатывать, если не конкретный рейс не выбран
             if (selectedFlight == null)
             {
                 return;
             }
-            flightRegistryService.DeleteFlight(selectedFlight);
+            await flightRegistryService.DeleteFlight(selectedFlight, CancellationToken.None);
             UpdateData();
         }
 
@@ -168,7 +169,7 @@ namespace Airport.UserControls
             // Игнорируем клик по заголовкам (e.RowIndex < 0)
             if (e.RowIndex < 0)
             {
-                return; 
+                return;
             }
 
             // Получаем строку, по которой кликнули
@@ -180,5 +181,7 @@ namespace Airport.UserControls
                 selectedFlight = flight;
             }
         }
+
+        
     }
 }

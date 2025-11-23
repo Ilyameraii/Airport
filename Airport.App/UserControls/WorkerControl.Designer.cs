@@ -153,6 +153,7 @@
             Margin = new Padding(0);
             Name = "WorkerControl";
             Size = new Size(786, 460);
+            Load += WorkerControl_Load;
             flowLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();

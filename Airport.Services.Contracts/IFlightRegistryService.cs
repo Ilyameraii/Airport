@@ -1,5 +1,6 @@
 ﻿using Airport.Entites.Models;
 using System.ComponentModel;
+using System.Threading;
 
 namespace Airport.Services.Contracts
 {
@@ -8,8 +9,21 @@ namespace Airport.Services.Contracts
     /// </summary>
     public interface IFlightRegistryService
     {
-        void AddFlight(Flight flight);
-        void DeleteFlight(Flight flight);
-        BindingList<Flight> GetAll();
+        /// <summary>
+        /// Добавление самолета
+        /// </summary>
+        /// <param name="flight">экземпляр самолета</param>
+        Task AddFlight(Flight flight, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Удаление самолета
+        /// </summary>
+        /// <param name="flight">экземпляр самолета</param>
+        Task DeleteFlight(Flight flight, CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Возвращает список всех самолетов
+        /// </summary>
+        Task<BindingList<Flight>> GetAll(CancellationToken cancellationToken);
     }
 }

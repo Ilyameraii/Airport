@@ -16,27 +16,28 @@ namespace Airport.Services
         /// Добавление самолета
         /// </summary>
         /// <param name="flight">экземпляр самолета</param>
-        public void AddFlight(Flight flight)
+        public Task AddFlight(Flight flight, CancellationToken cancellationToken)
         {
             flights.Add(flight);
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Удаление самолета
         /// </summary>
         /// <param name="flight">экземпляр самолета</param>
-        public void DeleteFlight(Flight flight)
+        public Task DeleteFlight(Flight flight, CancellationToken cancellationToken)
         {
             flights.Remove(flight);
+            return Task.CompletedTask;
         }
 
         /// <summary>
         /// Получение всего списка
         /// </summary>
-        /// <returns></returns>
-        public BindingList<Flight> GetAll()
+        public Task<BindingList<Flight>> GetAll(CancellationToken cancellationToken)
         {
-            return flights;
+            return Task.FromResult(flights);
         }
 
         /// <summary>
