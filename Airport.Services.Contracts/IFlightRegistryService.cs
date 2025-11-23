@@ -1,6 +1,5 @@
 ﻿using Airport.Entites.Models;
 using System.ComponentModel;
-using System.Threading;
 
 namespace Airport.Services.Contracts
 {

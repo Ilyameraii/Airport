@@ -1,7 +1,6 @@
 ﻿using Airport.Entites.Models;
 using Airport.Services.Contracts;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace Airport.Services
 {
