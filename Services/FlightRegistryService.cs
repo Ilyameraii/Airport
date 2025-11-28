@@ -2,8 +2,6 @@
 using Repository.Contracts;
 using Services.Contracts;
 using System.ComponentModel;
-using System.Data.SqlTypes;
-using System.IO.IsolatedStorage;
 
 namespace Services
 {

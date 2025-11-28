@@ -16,8 +16,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Airport.Services.Contracts\Services.Contracts.csproj" />
-	  <ProjectReference Include="..\Repositories.Contracts\Repository.Contracts.csproj" />
+	  <ProjectReference Include="..\Repository.Contracts\Repository.Contracts.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 </Project>
