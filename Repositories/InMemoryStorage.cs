@@ -1,13 +1,13 @@
-﻿using Airport.Entites.Models;
-using Airport.Services.Contracts;
+﻿using Entities.Models;
+using Repository.Contracts;
 using System.ComponentModel;
 
-namespace Airport.Services
+namespace Repository
 {
     /// <summary>
     /// Сервис составления отчета о рейсах
     /// </summary>
-    public class InMemoryStorage : IFlightRegistryService, IReportInfo
+    public class InMemoryStorage : IFlightRegistry, IReportInfo
     {
         private readonly BindingList<Flight> flights = new();
 

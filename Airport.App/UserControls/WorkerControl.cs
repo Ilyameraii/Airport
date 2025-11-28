@@ -1,6 +1,6 @@
-﻿using Airport.Entites.Models;
-using Airport.Forms;
-using Airport.Services.Contracts;
+﻿using Airport.Forms;
+using Entities.Models;
+using Services.Contracts;
 
 namespace Airport.UserControls
 {
@@ -32,7 +32,7 @@ namespace Airport.UserControls
         {
             dataGridView.AutoGenerateColumns = false;
             // устанавливаем источник datagridview через BindingSource
-             bindingSource.DataSource = await flightRegistryService.GetAll(CancellationToken.None);
+            bindingSource.DataSource = await flightRegistryService.GetAllAsync(CancellationToken.None);
             dataGridView.DataSource = bindingSource;
 
             GenerateFieldsOfDataGridView();
@@ -133,7 +133,7 @@ namespace Airport.UserControls
                 {
                     return;
                 }
-                await flightRegistryService.AddFlight(editListForm.ResultFlight, CancellationToken.None);
+                await flightRegistryService.AddFlightAsync(editListForm.ResultFlight, CancellationToken.None);
                 UpdateData();
             }
         }
@@ -159,7 +159,7 @@ namespace Airport.UserControls
             {
                 return;
             }
-            await flightRegistryService.DeleteFlight(selectedFlight, CancellationToken.None);
+            await flightRegistryService.DeleteFlightAsync(selectedFlight, CancellationToken.None);
             UpdateData();
         }
 
@@ -182,6 +182,6 @@ namespace Airport.UserControls
             }
         }
 
-        
+
     }
 }

@@ -9,12 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MyStorage" Version="1.0.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Airport.Services.Contracts\Airport.Services.Contracts.csproj" />
-    <ProjectReference Include="..\Airtport.Entites\Airtport.Entites.csproj" />
+    <ProjectReference Include="..\Airport.Services.Contracts\Services.Contracts.csproj" />
+    <ProjectReference Include="..\Airport.Services\Services.csproj" />
+    <ProjectReference Include="..\Repositories\Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

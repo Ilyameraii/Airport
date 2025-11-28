@@ -1,6 +1,5 @@
-﻿
-using Airport.Services.Contracts;
-using Airport.UserControls;
+﻿using Airport.UserControls;
+using Services.Contracts;
 
 namespace Airport.Forms
 {
@@ -17,7 +16,7 @@ namespace Airport.Forms
         /// </summary>
         /// <param name="flights">Список рейсов</param>
         /// <param name="reportingService">Сервис отчета реестра</param>
-        public MainForm(IFlightRegistryService flightRegistryService, IReportInfo reportInfo)
+        public MainForm(IFlightRegistryService flightRegistryService, IReportInfoService reportInfo)
         {
             InitializeComponent();
 
@@ -56,9 +55,9 @@ namespace Airport.Forms
             }
         }
 
-        private void buttonAdministrator_Click(object sender, EventArgs e)
+        private async void buttonAdministrator_Click(object sender, EventArgs e)
         {
-            administratorControl.RefreshData();
+            await administratorControl.RefreshData();
             ShowUserControl(administratorControl);
         }
     }

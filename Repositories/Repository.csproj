@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>MyStorage</PackageId>
+		<Version>1.0.5</Version>
+		<Authors>Ilya Bobrov IP-22-3</Authors>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<Product>In Memory Flight Storage</Product>
+		<Description>Библиотека для управления реестром авиарейсов, включая добавление, удаление, просмотр и генерацию отчетов.</Description>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageTags>airport;flights;registry;reporting;management</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Repositories.Contracts\Repository.Contracts.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="icon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Update="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+</Project>

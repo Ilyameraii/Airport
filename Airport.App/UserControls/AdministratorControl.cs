@@ -1,5 +1,4 @@
-﻿using Airport.Services.Contracts;
-using System.Threading;
+﻿using Services.Contracts;
 
 namespace Airport.UserControls
 {
@@ -8,13 +7,13 @@ namespace Airport.UserControls
     /// </summary>
     public partial class AdministratorControl : UserControl
     {
-        private readonly IReportInfo reportingService;
+        private readonly IReportInfoService reportingService;
 
         /// <summary>
         /// Конструктор
         /// </summary>
         /// <param name="reportingService">Сервис отчета</param>
-        public AdministratorControl(IReportInfo reportingService)
+        public AdministratorControl(IReportInfoService reportingService)
         {
             InitializeComponent();
 
@@ -29,10 +28,10 @@ namespace Airport.UserControls
         /// </summary>
         public async Task RefreshData()
         {
-            var totalPassangers = await reportingService.TotalPassangers(CancellationToken.None);
-            var totalArrivingFlights = await reportingService.TotalArrivingFlights(CancellationToken.None);
-            var totalCrew = await reportingService.TotalCrew(CancellationToken.None);
-            var totalRevenue = await reportingService.TotalRevenue(CancellationToken.None);
+            var totalPassangers = await reportingService.TotalPassangersAsync(CancellationToken.None);
+            var totalArrivingFlights = await reportingService.TotalArrivingFlightsAsync(CancellationToken.None);
+            var totalCrew = await reportingService.TotalCrewAsync(CancellationToken.None);
+            var totalRevenue = await reportingService.TotalRevenueAsync(CancellationToken.None);
 
             // Просто перечитываем значения из сервиса
             textBoxTotalPassangers.Text = totalPassangers.ToString();

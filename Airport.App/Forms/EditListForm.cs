@@ -1,5 +1,5 @@
-﻿using Airport.Entites.Models;
-using Airport.Extensions;
+﻿using Airport.Extensions;
+using Entities.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace Airport.Forms

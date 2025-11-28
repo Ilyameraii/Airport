@@ -1,4 +1,4 @@
-﻿namespace Airport.Entites.Models
+﻿namespace Entities.Models
 {
     /// <summary>
     /// Перечисление типов самолета

@@ -1,5 +1,6 @@
 ﻿using Airport.Forms;
-using Airport.Services;
+using Repository;
+using Services;
 
 namespace Airport
 {
@@ -20,8 +21,10 @@ namespace Airport
 
             // Создаем зависимости вручную
             var inMemoryStorage = new InMemoryStorage();
+            var flightRegistryService = new FlightRegistryService(inMemoryStorage);
+            var reportInfoService = new ReportInfoService(inMemoryStorage);
 
-            Application.Run(new MainForm(inMemoryStorage, inMemoryStorage));
+            Application.Run(new MainForm(flightRegistryService, reportInfoService));
         }
     }
 }
