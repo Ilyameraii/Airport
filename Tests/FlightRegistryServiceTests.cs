@@ -7,8 +7,14 @@ using System.ComponentModel;
 
 namespace Tests
 {
+    /// <summary>
+    /// Тестирование класса FlightRegistryService
+    /// </summary>
     public class FlightRegistryServiceTests
     {
+        /// <summary>
+        /// Проверка на корректное добавление самолета в методе AddFlightAsync класса FlightRegistryService
+        /// </summary>
         [Fact]
         public async Task AddFlight_Should_Add_The_Flight()
         {
@@ -24,6 +30,9 @@ namespace Tests
             repositoryMock.Verify(r => r.AddFlight(flight, It.IsAny<CancellationToken>()), Times.Once);
         }
 
+        /// <summary>
+        /// Проверка на корректное удаление самолета в методе DeleteFlightAsync класса FlightRegistryService
+        /// </summary>
         [Fact]
         public async Task DeleteFlight_Should_Delete_The_Flight()
         {
@@ -39,6 +48,9 @@ namespace Tests
             repositoryMock.Verify(r => r.DeleteFlight(flight, It.IsAny<CancellationToken>()), Times.Once);
         }
 
+        /// <summary>
+        /// Проверка на корректное получение всего списка в методе GetAllAsync класса FlightRegistryService
+        /// </summary>
         [Fact]
         public async Task GetAllFlights_Should_Return_All_Flights()
         {
