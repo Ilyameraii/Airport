@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Repository.Contracts;
 using Services;
@@ -10,6 +11,7 @@ namespace Tests
     /// </summary>
     public class ReportInfoServiceTests
     {
+
         /// <summary>
         /// Проверка на корректное получение количества всех рейсов в методе TotalArrivingFlightsAsync класса ReportInfoService
         /// </summary>
@@ -17,12 +19,13 @@ namespace Tests
         public async Task TotalArrivingFlights_Should_Returns_Count_Of_Flights()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<ReportInfoService>>();
             var repositoryMock = new Mock<IReportInfo>();
 
             repositoryMock.Setup(r => r.TotalArrivingFlights(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
-            var service = new ReportInfoService(repositoryMock.Object);
+            var service = new ReportInfoService(repositoryMock.Object, loggerMock.Object);
 
             // Act
             var result = await service.TotalArrivingFlightsAsync(CancellationToken.None);
@@ -39,12 +42,14 @@ namespace Tests
         public async Task TotalCrew_Should_Returns_Sum_Of_Crews()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<ReportInfoService>>();
             var repositoryMock = new Mock<IReportInfo>();
+
 
             repositoryMock.Setup(r => r.TotalCrew(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
-            var service = new ReportInfoService(repositoryMock.Object);
+            var service = new ReportInfoService(repositoryMock.Object, loggerMock.Object);
 
             // Act
             var result = await service.TotalCrewAsync(CancellationToken.None);
@@ -61,12 +66,13 @@ namespace Tests
         public async Task TotalPassangers_Should_Returns_Sum_Of_Passangers()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<ReportInfoService>>();
             var repositoryMock = new Mock<IReportInfo>();
 
             repositoryMock.Setup(r => r.TotalPassangers(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
-            var service = new ReportInfoService(repositoryMock.Object);
+            var service = new ReportInfoService(repositoryMock.Object, loggerMock.Object);
 
             // Act
             var result = await service.TotalPassangersAsync(CancellationToken.None);
@@ -83,12 +89,13 @@ namespace Tests
         public async Task TotalRevenue_Should_Returns_Sum_Of_Revenue()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<ReportInfoService>>();
             var repositoryMock = new Mock<IReportInfo>();
 
             repositoryMock.Setup(r => r.TotalRevenue(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
-            var service = new ReportInfoService(repositoryMock.Object);
+            var service = new ReportInfoService(repositoryMock.Object, loggerMock.Object);
 
             // Act
             var result = await service.TotalRevenueAsync(CancellationToken.None);

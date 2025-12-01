@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Repository.Contracts;
 using Services;
@@ -19,8 +20,9 @@ namespace Tests
         public async Task AddFlight_Should_Add_The_Flight()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<FlightRegistryService>>();
             var repositoryMock = new Mock<IFlightRegistry>();
-            var service = new FlightRegistryService(repositoryMock.Object);
+            var service = new FlightRegistryService(repositoryMock.Object, loggerMock.Object);
             var flight = new Flight();
 
             // Act
@@ -37,8 +39,9 @@ namespace Tests
         public async Task DeleteFlight_Should_Delete_The_Flight()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<FlightRegistryService>>();
             var repositoryMock = new Mock<IFlightRegistry>();
-            var service = new FlightRegistryService(repositoryMock.Object);
+            var service = new FlightRegistryService(repositoryMock.Object, loggerMock.Object);
             var flight = new Flight();
 
             // Act
@@ -55,12 +58,13 @@ namespace Tests
         public async Task GetAllFlights_Should_Return_All_Flights()
         {
             // Arrange
+            var loggerMock = new Mock<ILogger<FlightRegistryService>>();
             var repositoryMock = new Mock<IFlightRegistry>();
             var expected = new BindingList<Flight> { new Flight(), new Flight() };
 
             repositoryMock.Setup(r => r.GetAll(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
-            var service = new FlightRegistryService(repositoryMock.Object);
+            var service = new FlightRegistryService(repositoryMock.Object, loggerMock.Object);
 
             // Act
             var result = await service.GetAllAsync(CancellationToken.None);
