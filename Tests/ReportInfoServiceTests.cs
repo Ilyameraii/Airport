@@ -97,6 +97,5 @@ namespace Tests
             result.Should().Be(5);
             repositoryMock.Verify(r => r.TotalRevenue(It.IsAny<CancellationToken>()), Times.Once);
         }
-
     }
 }
