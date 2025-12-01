@@ -46,7 +46,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task TotalPassangers_Should_Returns_Sum_Of_Crews()
+        public async Task TotalPassangers_Should_Returns_Sum_Of_Passangers()
         {
             // Arrange
             var repositoryMock = new Mock<IReportInfo>();
@@ -65,7 +65,7 @@ namespace Tests
         }
 
         [Fact]
-        public async Task TotalRevenue()
+        public async Task TotalRevenue_Should_Returns_Sum_Of_Revenue()
         {
             // Arrange
             var repositoryMock = new Mock<IReportInfo>();
