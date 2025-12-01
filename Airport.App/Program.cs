@@ -24,10 +24,13 @@ namespace Airport
             // Создаем зависимости вручную
             var inMemoryStorage = new InMemoryStorage();
 
-            Directory.CreateDirectory("logs");
             var serilogLogger = new LoggerConfiguration()
-                .WriteTo.File("logs/app.txt", rollingInterval: RollingInterval.Day)
+                .MinimumLevel.Debug()
+                .WriteTo.Seq(
+                     serverUrl: "http://localhost:5341",   
+                     apiKey: "wupjwOk7CesZUYreEBlH")       
                 .CreateLogger();
+
             // Создаём фабрику Microsoft.Extensions.Logging поверх Serilog
             var loggerFactory = new LoggerFactory().AddSerilog(serilogLogger);
 
