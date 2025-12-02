@@ -108,7 +108,7 @@ namespace Services
             finally
             {
                 stopwatch.Stop();
-                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(TotalRevenueAsync), stopwatch.Elapsed.TotalSeconds);
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(TotalRevenueAsync), stopwatch.ElapsedMilliseconds);
             }
         }
     }
