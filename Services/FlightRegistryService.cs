@@ -15,6 +15,9 @@ namespace Services
         private readonly ILogger<FlightRegistryService> logger;
         private readonly IFlightRegistry storage;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public FlightRegistryService(IFlightRegistry storage, ILogger<FlightRegistryService> logger)
         {
             this.storage = storage;
