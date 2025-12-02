@@ -13,6 +13,9 @@ namespace Services
         private readonly ILogger<ReportInfoService> logger;
         private readonly IReportInfo storage;
 
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public ReportInfoService(IReportInfo storage, ILogger<ReportInfoService> logger)
         {
             this.storage = storage;
