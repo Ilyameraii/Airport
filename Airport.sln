@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BLL", "BLL", "{02EA681E-C7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DAL", "DAL", "{1D04A983-C994-4567-B04F-D237228E6D7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{2EE8D68A-7411-4CAB-A3DE-8056B785355D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.Tests", "Tests\Services.Tests.csproj", "{2EE8D68A-7411-4CAB-A3DE-8056B785355D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

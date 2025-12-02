@@ -40,7 +40,7 @@ namespace Services
             finally
             {
                 stopwatch.Stop();
-                logger.LogInformation("Метод {MethodName} завершен за {DurationSeconds:F3} с", nameof(AddFlightAsync), stopwatch.Elapsed.TotalSeconds);
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(AddFlightAsync), stopwatch.ElapsedMilliseconds);
             }
         }
 
@@ -63,7 +63,7 @@ namespace Services
             finally
             {
                 stopwatch.Stop();
-                logger.LogInformation("Метод {MethodName} завершен за {DurationSeconds:F3} с", nameof(DeleteFlightAsync), stopwatch.Elapsed.TotalSeconds);
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(DeleteFlightAsync), stopwatch.ElapsedMilliseconds);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Services
             finally
             {
                 stopwatch.Stop();
-                logger.LogInformation("Метод {MethodName} завершен за {DurationSeconds:F3} с", nameof(GetAllAsync), stopwatch.Elapsed.TotalSeconds);
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(GetAllAsync), stopwatch.ElapsedMilliseconds);
             }
         }
     }
