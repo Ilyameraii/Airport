@@ -13,6 +13,10 @@ namespace Services.Tests
         private readonly Mock<ILogger<ReportInfoService>> loggerMock;
         private readonly Mock<IReportInfo> repositoryMock;
         private readonly ReportInfoService service;
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public ReportInfoServiceTests() 
         {
             loggerMock = new();

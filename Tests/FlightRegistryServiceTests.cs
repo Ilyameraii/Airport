@@ -15,6 +15,10 @@ namespace Services.Tests
         private readonly Mock<ILogger<FlightRegistryService>> loggerMock;
         private readonly Mock<IFlightRegistry> repositoryMock;
         private readonly FlightRegistryService service;
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
         public FlightRegistryServiceTests()
         {
             loggerMock = new();
