@@ -10,19 +10,13 @@ namespace Services
     /// <summary>
     /// Сервис для добавления и удаления самолетов, просмотра всего списка самолетов
     /// </summary>
-    public class FlightRegistryService : IFlightRegistryService
+    /// <remarks>
+    /// Конструктор
+    /// </remarks>
+    public class FlightRegistryService(IFlightRegistry storage, ILogger<FlightRegistryService> logger) : IFlightRegistryService
     {
-        private readonly ILogger<FlightRegistryService> logger;
-        private readonly IFlightRegistry storage;
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public FlightRegistryService(IFlightRegistry storage, ILogger<FlightRegistryService> logger)
-        {
-            this.storage = storage;
-            this.logger = logger;
-        }
+        private readonly ILogger<FlightRegistryService> logger = logger;
+        private readonly IFlightRegistry storage = storage;
 
         /// <summary>
         /// Добавление самолета
@@ -73,7 +67,7 @@ namespace Services
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        public async Task<BindingList<Flight>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
             try

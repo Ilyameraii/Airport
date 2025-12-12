@@ -2,8 +2,9 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using Repository.Contracts;
+using Services;
 
-namespace Services.Tests
+namespace Tests
 {
     /// <summary>
     /// Тестирование класса ReportInfoService

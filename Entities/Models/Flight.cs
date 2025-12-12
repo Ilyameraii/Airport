@@ -11,18 +11,17 @@ namespace Entities.Models
         /// Конструктор
         /// </summary>
         public Flight() {
-            Id = Guid.NewGuid();
             AirplaneType = AirplaneType.Boing;
             ArrivalTime = DateTime.Now;
             NumberOfPassengers = 1;
             NumberOfCrew = 1;
-
         }
 
         /// <summary>
         /// Айди рейса
         /// </summary>
-        public Guid Id { get; }
+        [Required]
+        public Guid Id { get; private set; }
 
         /// <summary>
         /// Тип самолета

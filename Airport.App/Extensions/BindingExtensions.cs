@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
-namespace Airport.Extensions
+namespace Airport.App.Extensions
 {
     /// <summary>
     /// Расширение для удобной привязки данных и проверки ошибок ввода к элементам формы

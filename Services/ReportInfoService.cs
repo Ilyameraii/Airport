@@ -8,19 +8,13 @@ namespace Services
     /// <summary>
     /// Сервис для ведения отчета по рейсам
     /// </summary>
-    public class ReportInfoService : IReportInfoService
+    /// <remarks>
+    /// Конструктор
+    /// </remarks>
+    public class ReportInfoService(IReportInfo storage, ILogger<ReportInfoService> logger) : IReportInfoService
     {
-        private readonly ILogger<ReportInfoService> logger;
-        private readonly IReportInfo storage;
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        public ReportInfoService(IReportInfo storage, ILogger<ReportInfoService> logger)
-        {
-            this.storage = storage;
-            this.logger = logger;
-        }
+        private readonly ILogger<ReportInfoService> logger = logger;
+        private readonly IReportInfo storage = storage;
 
         /// <summary>
         /// Сумма всех рейсов

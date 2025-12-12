@@ -45,7 +45,7 @@ namespace Airport.UserControls
         /// </summary>
         public Action? OnExitClicked { get; set; }
 
-        private void buttonGoBack_Click(object sender, EventArgs e)
+        private void ButtonGoBack_Click(object sender, EventArgs e)
         {
             OnExitClicked?.Invoke();
         }
