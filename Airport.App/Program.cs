@@ -1,7 +1,5 @@
 ﻿using Airport.Forms;
-using Microsoft.Extensions.Logging;
 using Repository;
-using Serilog;
 using Services;
 
 namespace Airport
@@ -22,26 +20,9 @@ namespace Airport
             ApplicationConfiguration.Initialize();
 
             // Создаем зависимости вручную
-            var inMemoryStorage = new InMemoryStorage();
-
-            Directory.CreateDirectory("logs");
-            var serilogLogger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .WriteTo.File("logs/app.txt", rollingInterval: RollingInterval.Day)
-                .WriteTo.Seq(
-                     serverUrl: "http://localhost:5341",   
-                     apiKey: "wupjwOk7CesZUYreEBlH")       
-                .CreateLogger();
-
-            // Создаём фабрику Microsoft.Extensions.Logging поверх Serilog
-            var loggerFactory = new LoggerFactory().AddSerilog(serilogLogger);
-
-            var flightLogger = loggerFactory.CreateLogger<FlightRegistryService>();
-            var reportLogger = loggerFactory.CreateLogger<ReportInfoService>();
-
-            var flightRegistryService = new FlightRegistryService(inMemoryStorage, flightLogger);
-            var reportInfoService = new ReportInfoService(inMemoryStorage, reportLogger);
-
+            var databaseContext = new DatabaseStorage();
+            var flightRegistryService = new FlightRegistryService(databaseContext);
+            var reportInfoService = new ReportInfoService(databaseContext);
 
             Application.Run(new MainForm(flightRegistryService, reportInfoService));
         }

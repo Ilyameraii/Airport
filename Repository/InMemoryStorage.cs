@@ -1,6 +1,5 @@
 ﻿using Entities.Models;
 using Repository.Contracts;
-using System.ComponentModel;
 
 namespace Repository
 {
@@ -9,7 +8,7 @@ namespace Repository
     /// </summary>
     public class InMemoryStorage : IFlightRegistry, IReportInfo
     {
-        private readonly BindingList<Flight> flights = new();
+        private readonly List<Flight> flights = new();
 
         /// <summary>
         /// Добавление самолета
@@ -34,7 +33,7 @@ namespace Repository
         /// <summary>
         /// Получение всего списка
         /// </summary>
-        public Task<BindingList<Flight>> GetAll(CancellationToken cancellationToken)
+        public Task<List<Flight>> GetAll(CancellationToken cancellationToken)
         {
             return Task.FromResult(flights);
         }

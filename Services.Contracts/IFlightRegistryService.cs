@@ -1,5 +1,4 @@
 ﻿using Entities.Models;
-using System.ComponentModel;
 
 namespace Services.Contracts
 {
@@ -23,6 +22,6 @@ namespace Services.Contracts
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        Task<BindingList<Flight>> GetAllAsync(CancellationToken cancellationToken);
+        Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Entities.Models;
-using System.ComponentModel;
+
 
 namespace Repository.Contracts
 {
@@ -23,6 +23,6 @@ namespace Repository.Contracts
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        Task<BindingList<Flight>> GetAll(CancellationToken cancellationToken);
+        Task<List<Flight>> GetAll(CancellationToken cancellationToken);
     }
 }

@@ -31,6 +31,7 @@ namespace Airport.UserControls
         private async void WorkerControl_Load(object sender, EventArgs e)
         {
             dataGridView.AutoGenerateColumns = false;
+
             // устанавливаем источник datagridview через BindingSource
             bindingSource.DataSource = await flightRegistryService.GetAllAsync(CancellationToken.None);
             dataGridView.DataSource = bindingSource;
@@ -118,10 +119,10 @@ namespace Airport.UserControls
             OnExitClicked?.Invoke();
         }
 
-        private void UpdateData()
+        private async Task RefreshDataAsync()
         {
-            // обновляем список
-            bindingSource.ResetBindings(false);
+            var flights = await flightRegistryService.GetAllAsync(CancellationToken.None);
+            bindingSource.DataSource = flights; // Присваиваем новый список
         }
 
         private async void buttonAdd_Click(object sender, EventArgs e)
@@ -134,11 +135,11 @@ namespace Airport.UserControls
                     return;
                 }
                 await flightRegistryService.AddFlightAsync(editListForm.ResultFlight, CancellationToken.None);
-                UpdateData();
+                await RefreshDataAsync();
             }
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private async void buttonEdit_Click(object sender, EventArgs e)
         {
             // кнопка не будет срабатывать, если не конкретный рейс не выбран
             if (selectedFlight == null)
@@ -148,7 +149,7 @@ namespace Airport.UserControls
             using var editListForm = new EditListForm(selectedFlight);
             if (editListForm.ShowDialog() == DialogResult.OK)
             {
-                UpdateData();
+                await RefreshDataAsync();
             }
         }
 
@@ -160,7 +161,7 @@ namespace Airport.UserControls
                 return;
             }
             await flightRegistryService.DeleteFlightAsync(selectedFlight, CancellationToken.None);
-            UpdateData();
+            await RefreshDataAsync();
         }
 
         // выбор самолета для редактирования/удаления
