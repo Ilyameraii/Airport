@@ -40,7 +40,7 @@
             buttonWorker.TabIndex = 0;
             buttonWorker.Text = "Работник";
             buttonWorker.UseVisualStyleBackColor = true;
-            buttonWorker.Click += buttonWorker_Click;
+            buttonWorker.Click += ButtonWorker_Click;
             // 
             // buttonAdministrator
             // 
@@ -50,7 +50,7 @@
             buttonAdministrator.TabIndex = 1;
             buttonAdministrator.Text = "Администратор";
             buttonAdministrator.UseVisualStyleBackColor = true;
-            buttonAdministrator.Click += buttonAdministrator_Click;
+            buttonAdministrator.Click += ButtonAdministrator_Click;
             // 
             // MainForm
             // 

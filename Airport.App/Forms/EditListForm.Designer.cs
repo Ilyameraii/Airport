@@ -255,7 +255,7 @@
             buttonSave.TabIndex = 2;
             buttonSave.Text = "Сохранить";
             buttonSave.UseVisualStyleBackColor = true;
-            buttonSave.Click += buttonSave_Click;
+            buttonSave.Click += ButtonSave_Click;
             // 
             // buttonClear
             // 
@@ -266,7 +266,7 @@
             buttonClear.TabIndex = 3;
             buttonClear.Text = "Очистить";
             buttonClear.UseVisualStyleBackColor = true;
-            buttonClear.Click += buttonClear_Click;
+            buttonClear.Click += ButtonClear_Click;
             // 
             // tableLayoutPanel2
             // 

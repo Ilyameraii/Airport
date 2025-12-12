@@ -149,7 +149,7 @@
             buttonGoBack.TabIndex = 1;
             buttonGoBack.Text = "Назад";
             buttonGoBack.UseVisualStyleBackColor = true;
-            buttonGoBack.Click += buttonGoBack_Click;
+            buttonGoBack.Click += ButtonGoBack_Click;
             // 
             // tableLayoutPanel2
             // 

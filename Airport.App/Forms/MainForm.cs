@@ -20,17 +20,21 @@ namespace Airport.Forms
         {
             InitializeComponent();
 
-            workerControl = new(flightRegistryService);
-            workerControl.Dock = DockStyle.Fill;
+            workerControl = new(flightRegistryService)
+            {
+                Dock = DockStyle.Fill
+            };
             workerControl.OnExitClicked = () => CloseUserControl(workerControl);
 
-            administratorControl = new(reportInfo);
-            administratorControl.Dock = DockStyle.Fill;
+            administratorControl = new(reportInfo)
+            {
+                Dock = DockStyle.Fill
+            };
 
             administratorControl.OnExitClicked = () => CloseUserControl(administratorControl);
         }
 
-        private void buttonWorker_Click(object sender, EventArgs e)
+        private void ButtonWorker_Click(object sender, EventArgs e)
         {
 
             ShowUserControl(workerControl);
@@ -55,7 +59,7 @@ namespace Airport.Forms
             }
         }
 
-        private async void buttonAdministrator_Click(object sender, EventArgs e)
+        private async void ButtonAdministrator_Click(object sender, EventArgs e)
         {
             await administratorControl.RefreshData();
             ShowUserControl(administratorControl);

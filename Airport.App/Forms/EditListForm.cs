@@ -1,4 +1,4 @@
-﻿using Airport.Extensions;
+﻿using Airport.App.Extensions;
 using Entities.Models;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,7 +9,7 @@ namespace Airport.Forms
     /// </summary>
     public partial class EditListForm : Form
     {
-        private readonly Flight currentFlight = new Flight();
+        private readonly Flight currentFlight = new();
 
         /// <summary>
         /// Конструктор
@@ -57,7 +57,7 @@ namespace Airport.Forms
             servicePercentagePicker.AddBindings(x => x.Value, currentFlight, c => c.ServicePercentage, errorProvider);
         }
 
-        private void buttonSave_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             if (ResultFlight == null)
             {
@@ -75,7 +75,7 @@ namespace Airport.Forms
 
         }
     
-        private void buttonClear_Click(object sender, EventArgs e)
+        private void ButtonClear_Click(object sender, EventArgs e)
         {
             var dialogResult = MessageBox.Show("Вы уверены, что хотите очистить форму?", "Подтверждение",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question);

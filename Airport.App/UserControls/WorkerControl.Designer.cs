@@ -51,7 +51,7 @@
             buttonGoBack.TabIndex = 1;
             buttonGoBack.Text = "Назад";
             buttonGoBack.UseVisualStyleBackColor = true;
-            buttonGoBack.Click += buttonGoBack_Click;
+            buttonGoBack.Click += ButtonGoBack_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -89,7 +89,7 @@
             dataGridView.Name = "dataGridView";
             dataGridView.Size = new Size(780, 318);
             dataGridView.TabIndex = 3;
-            dataGridView.CellClick += dataGridView_CellClick;
+            dataGridView.CellClick += DataGridView_CellClick;
             // 
             // tableButtons
             // 
@@ -119,7 +119,7 @@
             buttonDelete.TabIndex = 2;
             buttonDelete.Text = "Удалить";
             buttonDelete.UseVisualStyleBackColor = false;
-            buttonDelete.Click += buttonDelete_Click;
+            buttonDelete.Click += ButtonDelete_Click;
             // 
             // buttonAdd
             // 
@@ -131,7 +131,7 @@
             buttonAdd.TabIndex = 0;
             buttonAdd.Text = "Добавить";
             buttonAdd.UseVisualStyleBackColor = false;
-            buttonAdd.Click += buttonAdd_Click;
+            buttonAdd.Click += ButtonAdd_Click;
             // 
             // buttonEdit
             // 
@@ -142,7 +142,7 @@
             buttonEdit.TabIndex = 1;
             buttonEdit.Text = "Редактировать";
             buttonEdit.UseVisualStyleBackColor = true;
-            buttonEdit.Click += buttonEdit_Click;
+            buttonEdit.Click += ButtonEdit_Click;
             // 
             // WorkerControl
             // 
