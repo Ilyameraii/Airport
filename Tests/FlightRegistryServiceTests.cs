@@ -3,7 +3,6 @@ using FluentAssertions;
 using Moq;
 using Repository.Contracts;
 using Services;
-using System.ComponentModel;
 
 namespace Tests
 {
@@ -44,7 +43,7 @@ namespace Tests
         {
             // Arrange
             var repositoryMock = new Mock<IFlightRegistry>();
-            var expected = new BindingList<Flight> { new Flight(), new Flight() };
+            var expected = new List<Flight> { new Flight(), new Flight() };
 
             repositoryMock.Setup(r => r.GetAll(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
