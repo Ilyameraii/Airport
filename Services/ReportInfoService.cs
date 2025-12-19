@@ -13,13 +13,10 @@ namespace Services
     /// </remarks>
     public class ReportInfoService(IReportInfo storage, ILogger<ReportInfoService> logger) : IReportInfoService
     {
-        private readonly ILogger<ReportInfoService> logger = logger;
-        private readonly IReportInfo storage = storage;
-
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public async Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -42,7 +39,7 @@ namespace Services
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public async Task<int> TotalCrewAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalCrewAsync(CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -65,30 +62,30 @@ namespace Services
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public async Task<int> TotalPassangersAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalPassengersAsync(CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.TotalPassangersAsync(cancellationToken);
+                var result = await storage.TotalPassengersAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(TotalPassangersAsync));
+                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(TotalPassengersAsync));
                 throw;
             }
             finally
             {
                 stopwatch.Stop();
-                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(TotalPassangersAsync), stopwatch.ElapsedMilliseconds);
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(TotalPassengersAsync), stopwatch.ElapsedMilliseconds);
             }
         }
 
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public async Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken)
+        public async Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken = default)
         {
 
             var stopwatch = Stopwatch.StartNew();

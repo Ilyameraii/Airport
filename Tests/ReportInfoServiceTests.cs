@@ -62,21 +62,21 @@ namespace Tests
         }
 
         /// <summary>
-        /// Проверка на корректное получение суммы всех пассажиров в методе TotalPassangersAsync класса ReportInfoService
+        /// Проверка на корректное получение суммы всех пассажиров в методе TotalPassengersAsync класса ReportInfoService
         /// </summary>
         [Fact]
-        public async Task TotalPassangersShouldReturnsSumOfPassangers()
+        public async Task TotalPassengersShouldReturnsSumOfPassengers()
         {
             // Arrange
-            repositoryMock.Setup(r => r.TotalPassangersAsync(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.TotalPassengersAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
             // Act
-            var result = await service.TotalPassangersAsync(CancellationToken.None);
+            var result = await service.TotalPassengersAsync(CancellationToken.None);
 
             // Assert
             result.Should().Be(5);
-            repositoryMock.Verify(r => r.TotalPassangersAsync(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.TotalPassengersAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>

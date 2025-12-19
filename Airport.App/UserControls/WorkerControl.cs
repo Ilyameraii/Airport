@@ -21,7 +21,6 @@ namespace Airport.UserControls
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flights">Список рейсов</param>
         public WorkerControl(IFlightRegistryService flightRegistryService)
         {
             InitializeComponent();
@@ -31,6 +30,7 @@ namespace Airport.UserControls
         private async void WorkerControl_Load(object sender, EventArgs e)
         {
             dataGridView.AutoGenerateColumns = false;
+            
             // устанавливаем источник datagridview через BindingSource
             bindingSource.DataSource = await flightRegistryService.GetAllAsync(CancellationToken.None);
             dataGridView.DataSource = bindingSource;

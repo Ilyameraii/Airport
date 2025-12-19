@@ -10,7 +10,7 @@ namespace Repository
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             context.Flights.Add(flight);
@@ -20,7 +20,7 @@ namespace Repository
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             context.Flights.Remove(flight);
@@ -30,7 +30,7 @@ namespace Repository
         /// <summary>
         /// Изменение самолета
         /// </summary>
-        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
 
@@ -50,12 +50,11 @@ namespace Repository
 
             await context.SaveChangesAsync(cancellationToken);
         }
-
         
         /// <summary>
         /// Получение всего списка
         /// </summary>
-        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             return await context.Flights.ToListAsync(cancellationToken);
@@ -64,7 +63,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public async Task<int> TotalPassangersAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalPassengersAsync(CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
@@ -74,7 +73,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public async Task<int> TotalCrewAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalCrewAsync(CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
@@ -84,7 +83,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public async Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken)
+        public async Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
@@ -94,7 +93,7 @@ namespace Repository
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public async Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken)
+        public async Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
@@ -109,8 +108,11 @@ namespace Repository
             }
             return Math.Round(result, 2);
         }
-
-        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken)
+        
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
+        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken = default)
         {
             await using var context = new DatabaseContext();
             var flight = await context.Flights.FirstOrDefaultAsync(f => f.Id == id, cancellationToken: cancellationToken);

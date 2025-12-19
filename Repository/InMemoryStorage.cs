@@ -1,6 +1,6 @@
 ﻿using Entities.Models;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Repository.Contracts;
+
 namespace Repository
 {
     /// <summary>
@@ -13,7 +13,7 @@ namespace Repository
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        public Task AddFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public Task AddFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             flights.Add(flight);
             return Task.CompletedTask;
@@ -22,16 +22,16 @@ namespace Repository
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        public Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             flights.Remove(flight);
             return Task.CompletedTask;
         }
 
         /// <summary>
-        /// Измененеие самолета
+        /// Изменение самолета
         /// </summary>
-        public Task UpdateFlightAsync(Flight newFlight, CancellationToken cancellationToken)
+        public Task UpdateFlightAsync(Flight newFlight, CancellationToken cancellationToken = default)
         {
             var flight = flights.FirstOrDefault(f => f.Id == newFlight.Id);
             if (flight != null)
@@ -51,7 +51,7 @@ namespace Repository
         /// <summary>
         /// Получение всего списка
         /// </summary>
-        public Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
+        public Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(flights);
         }
@@ -59,7 +59,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public Task<int> TotalPassangersAsync(CancellationToken cancellationToken)
+        public Task<int> TotalPassengersAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(flights.Sum(f => f.NumberOfPassengers));
         }
@@ -67,7 +67,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public Task<int> TotalCrewAsync(CancellationToken cancellationToken)
+        public Task<int> TotalCrewAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(flights.Sum(f => f.NumberOfCrew));
         }
@@ -75,7 +75,7 @@ namespace Repository
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken)
+        public Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(flights.Count);
         }
@@ -83,7 +83,7 @@ namespace Repository
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken)
+        public Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken = default)
         {
             decimal result = 0;
             foreach (var flight in flights)
@@ -99,7 +99,7 @@ namespace Repository
         /// <summary>
         /// Получение самолета по айди
         /// </summary>
-        public Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken)
+        public Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var flight = flights.FirstOrDefault(f => f.Id == id);
             return Task.FromResult(flight);

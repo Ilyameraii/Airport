@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Repository.Contracts;
 using Services.Contracts;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Services
@@ -15,13 +14,10 @@ namespace Services
     /// </remarks>
     public class FlightRegistryService(IFlightRegistry storage, ILogger<FlightRegistryService> logger) : IFlightRegistryService
     {
-        private readonly ILogger<FlightRegistryService> logger = logger;
-        private readonly IFlightRegistry storage = storage;
-
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -43,7 +39,7 @@ namespace Services
         /// <summary>
         /// Изменение самолета
         /// </summary>
-        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -65,7 +61,7 @@ namespace Services
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -87,7 +83,7 @@ namespace Services
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
@@ -110,7 +106,7 @@ namespace Services
         /// <summary>
         /// Получение самолета по айди
         /// </summary>
-        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try

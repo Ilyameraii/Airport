@@ -28,7 +28,7 @@ namespace Airport.UserControls
         /// </summary>
         public async Task RefreshData()
         {
-            var totalPassangers = await reportingService.TotalPassangersAsync(CancellationToken.None);
+            var totalPassangers = await reportingService.TotalPassengersAsync(CancellationToken.None);
             var totalArrivingFlights = await reportingService.TotalArrivingFlightsAsync(CancellationToken.None);
             var totalCrew = await reportingService.TotalCrewAsync(CancellationToken.None);
             var totalRevenue = await reportingService.TotalRevenueAsync(CancellationToken.None);

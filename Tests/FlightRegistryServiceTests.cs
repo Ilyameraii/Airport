@@ -4,7 +4,6 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using Repository.Contracts;
 using Services;
-using System.ComponentModel;
 
 namespace Tests
 {
