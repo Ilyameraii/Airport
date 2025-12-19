@@ -21,13 +21,12 @@ namespace Services
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
         public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                await storage.AddFlight(flight, cancellationToken);
+                await storage.AddFlightAsync(flight, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -44,13 +43,12 @@ namespace Services
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
         public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                await storage.DeleteFlight(flight, cancellationToken);
+                await storage.DeleteFlightAsync(flight, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -72,7 +70,7 @@ namespace Services
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.GetAll(cancellationToken);
+                var result = await storage.GetAllAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
@@ -84,6 +82,29 @@ namespace Services
             {
                 stopwatch.Stop();
                 logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(GetAllAsync), stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
+        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                var result = await storage.GetFlightAsync(id, cancellationToken);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(GetFlightAsync));
+                throw;
+            }
+            finally
+            {
+                stopwatch.Stop();
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(GetFlightAsync), stopwatch.ElapsedMilliseconds);
             }
         }
     }

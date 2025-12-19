@@ -40,7 +40,7 @@ namespace Tests
             await service.AddFlightAsync(flight, CancellationToken.None);
 
             // Assert
-            repositoryMock.Verify(r => r.AddFlight(flight, It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.AddFlightAsync(flight, It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace Tests
             await service.DeleteFlightAsync(flight, CancellationToken.None);
 
             // Assert
-            repositoryMock.Verify(r => r.DeleteFlight(flight, It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.DeleteFlightAsync(flight, It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>
@@ -67,7 +67,7 @@ namespace Tests
         {
             // Arrange
             var expected = new List<Flight> { new(), new() };
-            repositoryMock.Setup(r => r.GetAll(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.GetAllAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 
             // Act
@@ -75,7 +75,7 @@ namespace Tests
 
             // Assert
             result.Should().BeSameAs(expected);
-            repositoryMock.Verify(r => r.GetAll(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.GetAllAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }

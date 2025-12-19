@@ -24,7 +24,7 @@ namespace Services
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.TotalArrivingFlights(cancellationToken);
+                var result = await storage.TotalArrivingFlightsAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace Services
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.TotalCrew(cancellationToken);
+                var result = await storage.TotalCrewAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
@@ -70,7 +70,7 @@ namespace Services
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.TotalPassangers(cancellationToken);
+                var result = await storage.TotalPassangersAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
@@ -94,7 +94,7 @@ namespace Services
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.TotalRevenue(cancellationToken);
+                var result = await storage.TotalRevenueAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)

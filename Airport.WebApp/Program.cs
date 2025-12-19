@@ -1,7 +1,18 @@
+using Context;
+using Repository;
+using Repository.Contracts;
+using Services;
+using Services.Contracts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<DatabaseContext>();
+builder.Services.AddScoped<IFlightRegistry, DatabaseStorage>();
+builder.Services.AddScoped<IReportInfo, DatabaseStorage>();
+builder.Services.AddScoped<IFlightRegistryService, FlightRegistryService>();
+builder.Services.AddScoped<IReportInfoService, ReportInfoService>();
 
 var app = builder.Build();
 

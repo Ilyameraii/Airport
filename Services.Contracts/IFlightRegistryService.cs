@@ -11,18 +11,21 @@ namespace Services.Contracts
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
         Task AddFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
         Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
         Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Возвращает самолет по айди
+        /// </summary>
+        Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken);
     }
 }

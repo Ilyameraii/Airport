@@ -1,7 +1,67 @@
+@using Entities.Models
+@using Microsoft.EntityFrameworkCore.Diagnostics
+
+@model IEnumerable<Flight>
+
 @{
     ViewData["Title"] = "Flight registry";
 }
-
 <div>
-    
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Айди рейса</th>
+            <th>Тип самолёта</th>
+            <th>Время прибытия</th>
+            <th>Пассажиры</th>
+            <th>Сбор на пассажира</th>
+            <th>Экипаж</th>
+            <th>Сбор на экипаж</th>
+            <th>% обслуживания</th>
+            <th>Общая стоимость</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        @{
+            foreach (var flight in Model)
+            {
+                <tr>
+                    <td>@flight.Id</td>
+                    <td>@flight.AirplaneType</td>
+                    <td>@flight.ArrivalTime.ToShortDateString()</td>
+                    <td>@flight.NumberOfPassengers</td>
+                    <td>@flight.PassengerTax.ToString("N2")</td>
+                    <td>@flight.NumberOfCrew</td>
+                    <td>@flight.CrewTax.ToString("N2")</td>
+                    <td>@flight.ServicePercentage</td>
+                    <td>
+                        @{
+                            var baseCost =
+                                flight.NumberOfPassengers * flight.PassengerTax +
+                                flight.NumberOfPassengers * flight.CrewTax;
+
+                            var totalCost =
+                                baseCost + baseCost * flight.ServicePercentage / 100;
+                        }
+                        @totalCost.ToString("N2")
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Update"
+                           asp-route-id="@flight.Id"
+                           class="btn btn-sm btn-secondary mb-1">
+                            Изменить
+                        </a>
+
+                        <a asp-action="Remove"
+                           asp-route-id="@flight.Id"
+                           class="btn btn-sm btn-danger">
+                            Удалить
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
 </div>

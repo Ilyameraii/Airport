@@ -9,21 +9,21 @@
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        Task<int> TotalPassangers(CancellationToken cancellationToken);
+        Task<int> TotalPassangersAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        Task<int> TotalArrivingFlights(CancellationToken cancellationToken);
+        Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        Task<int> TotalCrew(CancellationToken cancellationToken);
+        Task<int> TotalCrewAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        Task<decimal> TotalRevenue(CancellationToken cancellationToken);
+        Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken);
     }
 }
