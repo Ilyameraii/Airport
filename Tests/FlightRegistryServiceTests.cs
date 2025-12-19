@@ -3,9 +3,10 @@ using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Repository.Contracts;
+using Services;
 using System.ComponentModel;
 
-namespace Services.Tests
+namespace Tests
 {
     /// <summary>
     /// Тестирование класса FlightRegistryService
@@ -65,7 +66,7 @@ namespace Services.Tests
         public async Task GetAllFlightsShouldReturnAllFlights()
         {
             // Arrange
-            var expected = new BindingList<Flight> { new Flight(), new Flight() };
+            var expected = new List<Flight> { new(), new() };
             repositoryMock.Setup(r => r.GetAll(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(expected);
 

@@ -16,6 +16,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Context\Context.csproj" />
 	  <ProjectReference Include="..\Repository.Contracts\Repository.Contracts.csproj" />
 	</ItemGroup>
 

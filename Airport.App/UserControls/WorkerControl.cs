@@ -14,7 +14,7 @@ namespace Airport.UserControls
         /// </summary>
         public Action? OnExitClicked { get; set; }
 
-        private readonly BindingSource bindingSource = new();
+        private readonly BindingSource bindingSource = [];
         private Flight? selectedFlight;
         private readonly IFlightRegistryService flightRegistryService;
 
@@ -113,18 +113,18 @@ namespace Airport.UserControls
             }
         }
 
-        private void buttonGoBack_Click(object sender, EventArgs e)
+        private void ButtonGoBack_Click(object sender, EventArgs e)
         {
             OnExitClicked?.Invoke();
         }
 
-        private void UpdateData()
+        private async Task RefreshDataAsync()
         {
-            // обновляем список
-            bindingSource.ResetBindings(false);
+            var flights = await flightRegistryService.GetAllAsync(CancellationToken.None);
+            bindingSource.DataSource = flights; // присваиваем обновленный список
         }
 
-        private async void buttonAdd_Click(object sender, EventArgs e)
+        private async void ButtonAdd_Click(object sender, EventArgs e)
         {
             using var editListForm = new EditListForm();
             if (editListForm.ShowDialog() == DialogResult.OK)
@@ -134,11 +134,11 @@ namespace Airport.UserControls
                     return;
                 }
                 await flightRegistryService.AddFlightAsync(editListForm.ResultFlight, CancellationToken.None);
-                UpdateData();
+                await RefreshDataAsync();
             }
         }
 
-        private void buttonEdit_Click(object sender, EventArgs e)
+        private async void ButtonEdit_Click(object sender, EventArgs e)
         {
             // кнопка не будет срабатывать, если не конкретный рейс не выбран
             if (selectedFlight == null)
@@ -148,11 +148,11 @@ namespace Airport.UserControls
             using var editListForm = new EditListForm(selectedFlight);
             if (editListForm.ShowDialog() == DialogResult.OK)
             {
-                UpdateData();
+                await RefreshDataAsync();
             }
         }
 
-        private async void buttonDelete_Click(object sender, EventArgs e)
+        private async void ButtonDelete_Click(object sender, EventArgs e)
         {
             // кнопка не будет срабатывать, если не конкретный рейс не выбран
             if (selectedFlight == null)
@@ -160,11 +160,11 @@ namespace Airport.UserControls
                 return;
             }
             await flightRegistryService.DeleteFlightAsync(selectedFlight, CancellationToken.None);
-            UpdateData();
+            await RefreshDataAsync();
         }
 
         // выбор самолета для редактирования/удаления
-        private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void DataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Игнорируем клик по заголовкам (e.RowIndex < 0)
             if (e.RowIndex < 0)

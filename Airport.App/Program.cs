@@ -4,7 +4,7 @@ using Repository;
 using Serilog;
 using Services;
 
-namespace Airport
+namespace Airport.App
 {
     /// <summary>
     /// Класс Program - точка входа в программу
@@ -22,7 +22,7 @@ namespace Airport
             ApplicationConfiguration.Initialize();
 
             // Создаем зависимости вручную
-            var inMemoryStorage = new InMemoryStorage();
+            var databaseStorage = new DatabaseStorage();
 
             Directory.CreateDirectory("logs");
             var serilogLogger = new LoggerConfiguration()
@@ -39,8 +39,8 @@ namespace Airport
             var flightLogger = loggerFactory.CreateLogger<FlightRegistryService>();
             var reportLogger = loggerFactory.CreateLogger<ReportInfoService>();
 
-            var flightRegistryService = new FlightRegistryService(inMemoryStorage, flightLogger);
-            var reportInfoService = new ReportInfoService(inMemoryStorage, reportLogger);
+            var flightRegistryService = new FlightRegistryService(databaseStorage, flightLogger);
+            var reportInfoService = new ReportInfoService(databaseStorage, reportLogger);
 
 
             Application.Run(new MainForm(flightRegistryService, reportInfoService));
