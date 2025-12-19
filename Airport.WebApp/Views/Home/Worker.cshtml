@@ -43,14 +43,12 @@
                     <td>@flight.ServicePercentage</td>
                     <td>
                         @{
-                            var baseCost =
-                                flight.NumberOfPassengers * flight.PassengerTax +
-                                flight.NumberOfPassengers * flight.CrewTax;
-
-                            var totalCost =
-                                baseCost + baseCost * flight.ServicePercentage / 100;
+                            var baseRevenue = flight.NumberOfPassengers * flight.PassengerTax +
+                                              flight.NumberOfCrew * flight.CrewTax;
+                            var surcharge = baseRevenue * (flight.ServicePercentage / 100m);
+                            var result = baseRevenue + surcharge;
                         }
-                        @totalCost.ToString("N2")
+                        @result.ToString("N2")
                     </td>
                     <td class="text-center">
                         <a asp-action="Edit"
