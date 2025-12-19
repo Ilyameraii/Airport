@@ -20,8 +20,8 @@ namespace Entities.Models
         /// <summary>
         /// Айди рейса
         /// </summary>
-        [Required]
-        public Guid Id { get; private set; }
+        [Key]
+        public Guid Id { get; set; }
 
         /// <summary>
         /// Тип самолета

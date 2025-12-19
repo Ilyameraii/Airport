@@ -2,7 +2,6 @@
 using Microsoft.Extensions.Logging;
 using Repository.Contracts;
 using Services.Contracts;
-using System.ComponentModel;
 using System.Diagnostics;
 
 namespace Services
@@ -15,19 +14,15 @@ namespace Services
     /// </remarks>
     public class FlightRegistryService(IFlightRegistry storage, ILogger<FlightRegistryService> logger) : IFlightRegistryService
     {
-        private readonly ILogger<FlightRegistryService> logger = logger;
-        private readonly IFlightRegistry storage = storage;
-
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                await storage.AddFlight(flight, cancellationToken);
+                await storage.AddFlightAsync(flight, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -42,15 +37,36 @@ namespace Services
         }
 
         /// <summary>
-        /// Удаление самолета
+        /// Изменение самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                await storage.DeleteFlight(flight, cancellationToken);
+                await storage.UpdateFlightAsync(flight, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(UpdateFlightAsync));
+                throw;
+            }
+            finally
+            {
+                stopwatch.Stop();
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(UpdateFlightAsync), stopwatch.ElapsedMilliseconds);
+            }
+        }
+        
+        /// <summary>
+        /// Удаление самолета
+        /// </summary>
+        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken = default)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                await storage.DeleteFlightAsync(flight, cancellationToken);
             }
             catch (Exception ex)
             {
@@ -67,12 +83,12 @@ namespace Services
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
+        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken = default)
         {
             var stopwatch = Stopwatch.StartNew();
             try
             {
-                var result = await storage.GetAll(cancellationToken);
+                var result = await storage.GetAllAsync(cancellationToken);
                 return result;
             }
             catch (Exception ex)
@@ -84,6 +100,29 @@ namespace Services
             {
                 stopwatch.Stop();
                 logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(GetAllAsync), stopwatch.ElapsedMilliseconds);
+            }
+        }
+
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
+        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                var result = await storage.GetFlightAsync(id, cancellationToken);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(GetFlightAsync));
+                throw;
+            }
+            finally
+            {
+                stopwatch.Stop();
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(GetFlightAsync), stopwatch.ElapsedMilliseconds);
             }
         }
     }

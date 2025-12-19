@@ -1,5 +1,4 @@
 ﻿using Entities.Models;
-using System.ComponentModel;
 
 namespace Repository.Contracts
 {
@@ -11,18 +10,27 @@ namespace Repository.Contracts
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        Task AddFlight(Flight flight, CancellationToken cancellationToken);
+        Task AddFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        Task DeleteFlight(Flight flight, CancellationToken cancellationToken);
+        Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken);
+       
+        
+        /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
-        Task<List<Flight>> GetAll(CancellationToken cancellationToken);
+        Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
+        Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken);
     }
 }

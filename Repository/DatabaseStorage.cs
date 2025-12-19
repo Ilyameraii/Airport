@@ -10,10 +10,9 @@ namespace Repository
         /// <summary>
         /// Добавление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        public async Task AddFlight(Flight flight, CancellationToken cancellationToken)
+        public async Task AddFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             context.Flights.Add(flight);
             await context.SaveChangesAsync(cancellationToken);
         }
@@ -21,29 +20,52 @@ namespace Repository
         /// <summary>
         /// Удаление самолета
         /// </summary>
-        /// <param name="flight">экземпляр самолета</param>
-        public async Task DeleteFlight(Flight flight, CancellationToken cancellationToken)
+        public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             context.Flights.Remove(flight);
             await context.SaveChangesAsync(cancellationToken);
         }
 
         /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken = default)
+        {
+            await using var context = new DatabaseContext();
+
+            var entity = await context.Flights
+                .FirstOrDefaultAsync(x => x.Id == flight.Id, cancellationToken);
+
+            if (entity == null)
+                throw new InvalidOperationException("Рейс не найден");
+
+            entity.AirplaneType = flight.AirplaneType;
+            entity.ArrivalTime = flight.ArrivalTime;
+            entity.NumberOfPassengers = flight.NumberOfPassengers;
+            entity.PassengerTax = flight.PassengerTax;
+            entity.NumberOfCrew = flight.NumberOfCrew;
+            entity.CrewTax = flight.CrewTax;
+            entity.ServicePercentage = flight.ServicePercentage;
+
+            await context.SaveChangesAsync(cancellationToken);
+        }
+        
+        /// <summary>
         /// Получение всего списка
         /// </summary>
-        public async Task<List<Flight>> GetAll(CancellationToken cancellationToken)
+        public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             return await context.Flights.ToListAsync(cancellationToken);
         }
 
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        public async Task<int> TotalPassangers(CancellationToken cancellationToken)
+        public async Task<int> TotalPassengersAsync(CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
             return flights.Sum(f => f.NumberOfPassengers);
         }
@@ -51,9 +73,9 @@ namespace Repository
         /// <summary>
         /// Сумма всех экипажей
         /// </summary>
-        public async Task<int> TotalCrew(CancellationToken cancellationToken)
+        public async Task<int> TotalCrewAsync(CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
             return flights.Sum(f => f.NumberOfCrew);
         }
@@ -61,9 +83,9 @@ namespace Repository
         /// <summary>
         /// Сумма всех рейсов
         /// </summary>
-        public async Task<int> TotalArrivingFlights(CancellationToken cancellationToken)
+        public async Task<int> TotalArrivingFlightsAsync(CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
             return flights.Count;
         }
@@ -71,9 +93,9 @@ namespace Repository
         /// <summary>
         /// Суммарная выручка
         /// </summary>
-        public async Task<decimal> TotalRevenue(CancellationToken cancellationToken)
+        public async Task<decimal> TotalRevenueAsync(CancellationToken cancellationToken = default)
         {
-            using var context = new DatabaseContext();
+            await using var context = new DatabaseContext();
             var flights = await context.Flights.ToListAsync(cancellationToken);
 
             decimal result = 0;
@@ -86,5 +108,16 @@ namespace Repository
             }
             return Math.Round(result, 2);
         }
+        
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
+        public async Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken = default)
+        {
+            await using var context = new DatabaseContext();
+            var flight = await context.Flights.FirstOrDefaultAsync(f => f.Id == id, cancellationToken: cancellationToken);
+            return flight;
+        }
+        
     }
 }

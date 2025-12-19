@@ -1,0 +1,35 @@
+@using Microsoft.EntityFrameworkCore.Infrastructure
+@model AdministratorViewModel
+@{
+    ViewData["Title"] = "Flights report";
+}
+<div class="container mt-4">
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped table-hover align-middle w-100">
+            <thead class="table-light">
+            <tr>
+                <th scope="col" class="w-50">Показатель</th>
+                <th scope="col" class="w-50">Значение</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="w-50">Прибывших рейсов</td>
+                <td class="w-50"><strong>@Model.TotalArrivingFlights</strong></td>
+            </tr>
+            <tr>
+                <td class="w-50">Пассажиров</td>
+                <td class="w-50"><strong>@Model.TotalPassengers</strong></td>
+            </tr>
+            <tr>
+                <td class="w-50">Экипажа</td>
+                <td class="w-50"><strong>@Model.TotalCrew</strong></td>
+            </tr>
+            <tr>
+                <td class="w-50">Доход</td>
+                <td class="w-50"><strong>@Model.TotalRevenue ₽</strong></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

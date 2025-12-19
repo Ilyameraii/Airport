@@ -1,7 +1,7 @@
 ﻿using Airport.UserControls;
 using Services.Contracts;
 
-namespace Airport.Forms
+namespace Airport.App.Forms
 {
     /// <summary>
     /// Главная форма, для ведения реестра рейсов и просмотра отчетов о рейсах
@@ -14,8 +14,6 @@ namespace Airport.Forms
         /// <summary>
         /// Конструктор
         /// </summary>
-        /// <param name="flights">Список рейсов</param>
-        /// <param name="reportingService">Сервис отчета реестра</param>
         public MainForm(IFlightRegistryService flightRegistryService, IReportInfoService reportInfo)
         {
             InitializeComponent();
@@ -41,7 +39,7 @@ namespace Airport.Forms
 
         }
 
-        private void ShowUserControl(UserControl userControl)
+        private void ShowUserControl(UserControl? userControl)
         {
             if (userControl != null)
             {
@@ -51,7 +49,7 @@ namespace Airport.Forms
 
         }
 
-        private void CloseUserControl(UserControl userControl)
+        private void CloseUserControl(UserControl? userControl)
         {
             if (userControl != null)
             {
