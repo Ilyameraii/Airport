@@ -41,6 +41,28 @@ namespace Services
         }
 
         /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                await storage.UpdateFlightAsync(flight, cancellationToken);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Ошибка в методе {MethodName}", nameof(UpdateFlightAsync));
+                throw;
+            }
+            finally
+            {
+                stopwatch.Stop();
+                logger.LogInformation("Метод {MethodName} завершен за {DurationMilliseconds} мс", nameof(UpdateFlightAsync), stopwatch.ElapsedMilliseconds);
+            }
+        }
+        
+        /// <summary>
         /// Удаление самолета
         /// </summary>
         public async Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken)

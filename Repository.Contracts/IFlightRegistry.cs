@@ -16,12 +16,21 @@ namespace Repository.Contracts
         /// Удаление самолета
         /// </summary>
         Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken);
+       
+        
+        /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
         Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken);
         
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
         Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken);
     }
 }

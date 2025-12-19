@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Repository.Contracts;
 namespace Repository
 {
@@ -27,6 +28,26 @@ namespace Repository
             return Task.CompletedTask;
         }
 
+        /// <summary>
+        /// Измененеие самолета
+        /// </summary>
+        public Task UpdateFlightAsync(Flight newFlight, CancellationToken cancellationToken)
+        {
+            var flight = flights.FirstOrDefault(f => f.Id == newFlight.Id);
+            if (flight != null)
+            {
+                // Копируем значения свойств
+                flight.AirplaneType = newFlight.AirplaneType;
+                flight.ArrivalTime = newFlight.ArrivalTime;
+                flight.NumberOfPassengers = newFlight.NumberOfPassengers;
+                flight.PassengerTax = newFlight.PassengerTax;
+                flight.NumberOfCrew = newFlight.NumberOfCrew;
+                flight.CrewTax = newFlight.CrewTax;
+                flight.ServicePercentage = newFlight.ServicePercentage;
+            }
+            return Task.CompletedTask;
+        }
+        
         /// <summary>
         /// Получение всего списка
         /// </summary>
@@ -74,7 +95,10 @@ namespace Repository
             }
             return Task.FromResult(Math.Round(result, 2));
         }
-
+        
+        /// <summary>
+        /// Получение самолета по айди
+        /// </summary>
         public Task<Flight?> GetFlightAsync(Guid id, CancellationToken cancellationToken)
         {
             var flight = flights.FirstOrDefault(f => f.Id == id);

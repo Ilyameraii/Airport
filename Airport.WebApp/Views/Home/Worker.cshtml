@@ -6,6 +6,12 @@
 @{
     ViewData["Title"] = "Flight registry";
 }
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>@ViewData["Title"]</h2>
+    <a asp-action="Add" class="btn btn-primary">Добавить рейс</a>
+</div>
+
 <div>
     <table class="table table-striped">
         <thead>
@@ -47,15 +53,17 @@
                         @totalCost.ToString("N2")
                     </td>
                     <td class="text-center">
-                        <a asp-action="Update"
+                        <a asp-action="Edit"
                            asp-route-id="@flight.Id"
-                           class="btn btn-sm btn-secondary mb-1">
+                           class="btn btn-sm btn-secondary mb-1"
+                           style="min-width: 80px;">
                             Изменить
                         </a>
 
                         <a asp-action="Remove"
                            asp-route-id="@flight.Id"
-                           class="btn btn-sm btn-danger">
+                           class="btn btn-sm btn-danger"
+                           style="min-width: 80px;">
                             Удалить
                         </a>
                     </td>

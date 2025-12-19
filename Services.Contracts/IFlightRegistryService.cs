@@ -19,6 +19,11 @@ namespace Services.Contracts
         Task DeleteFlightAsync(Flight flight, CancellationToken cancellationToken);
 
         /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken);
+            
+        /// <summary>
         /// Возвращает список всех самолетов
         /// </summary>
         Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken);

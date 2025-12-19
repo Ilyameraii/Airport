@@ -28,6 +28,31 @@ namespace Repository
         }
 
         /// <summary>
+        /// Изменение самолета
+        /// </summary>
+        public async Task UpdateFlightAsync(Flight flight, CancellationToken cancellationToken)
+        {
+            await using var context = new DatabaseContext();
+
+            var entity = await context.Flights
+                .FirstOrDefaultAsync(x => x.Id == flight.Id, cancellationToken);
+
+            if (entity == null)
+                throw new InvalidOperationException("Рейс не найден");
+
+            entity.AirplaneType = flight.AirplaneType;
+            entity.ArrivalTime = flight.ArrivalTime;
+            entity.NumberOfPassengers = flight.NumberOfPassengers;
+            entity.PassengerTax = flight.PassengerTax;
+            entity.NumberOfCrew = flight.NumberOfCrew;
+            entity.CrewTax = flight.CrewTax;
+            entity.ServicePercentage = flight.ServicePercentage;
+
+            await context.SaveChangesAsync(cancellationToken);
+        }
+
+        
+        /// <summary>
         /// Получение всего списка
         /// </summary>
         public async Task<List<Flight>> GetAllAsync(CancellationToken cancellationToken)
@@ -91,5 +116,6 @@ namespace Repository
             var flight = await context.Flights.FirstOrDefaultAsync(f => f.Id == id, cancellationToken: cancellationToken);
             return flight;
         }
+        
     }
 }
