@@ -25,6 +25,7 @@ namespace Airport.WebApp.Controllers
         /// <summary>
         /// Открывает View для работника
         /// </summary>
+        [HttpGet]
         public async Task<IActionResult> Worker(CancellationToken cancellationToken)
         {
             var flights = await flightRegistryService.GetAllAsync(cancellationToken);
@@ -34,6 +35,7 @@ namespace Airport.WebApp.Controllers
         /// <summary>
         /// Открывает View для администратора
         /// </summary>
+        [HttpGet]
         public async Task<IActionResult> Administrator(CancellationToken cancellationToken)
         {
             var viewModel = new AdministratorViewModel
