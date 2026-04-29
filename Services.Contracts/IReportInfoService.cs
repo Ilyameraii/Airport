@@ -9,7 +9,7 @@
         /// <summary>
         /// Сумма всех пассажиров
         /// </summary>
-        Task<int> TotalPassangersAsync(CancellationToken cancellationToken);
+        Task<int> TotalPassengersAsync(CancellationToken cancellationToken);
 
         /// <summary>
         /// Сумма всех рейсов

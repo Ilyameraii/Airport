@@ -1,4 +1,4 @@
-﻿using Airport.Forms;
+﻿using Airport.App.Forms;
 using Microsoft.Extensions.Logging;
 using Repository;
 using Serilog;
@@ -41,8 +41,7 @@ namespace Airport.App
 
             var flightRegistryService = new FlightRegistryService(databaseStorage, flightLogger);
             var reportInfoService = new ReportInfoService(databaseStorage, reportLogger);
-
-
+            
             Application.Run(new MainForm(flightRegistryService, reportInfoService));
         }
     }

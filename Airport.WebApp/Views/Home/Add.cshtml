@@ -1,0 +1,72 @@
+@using Entities.Models
+@model Flight
+
+@{
+    ViewData["Title"] = "Добавить рейс";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" asp-action="Add">
+    <!-- Тип самолёта -->
+    <div class="mb-3">
+        <label asp-for="AirplaneType" class="form-label">Тип самолёта</label>
+        <select asp-for="AirplaneType" class="form-select">
+            @foreach (var type in Enum.GetValues<AirplaneType>())
+            {
+                <option value="@((int)type)">@type.ToString()</option>
+            }
+        </select>
+        <span asp-validation-for="AirplaneType" class="text-danger"></span>
+    </div>
+
+    <!-- Время прибытия -->
+    <div class="mb-3">
+        <label asp-for="ArrivalTime" class="form-label">Время прибытия</label>
+        <input asp-for="ArrivalTime" type="datetime-local" class="form-control"
+               value="@(Model?.ArrivalTime.ToString("yyyy-MM-ddTHH:mm"))" />
+        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+    </div>
+
+    <!-- Количество пассажиров -->
+    <div class="mb-3">
+        <label asp-for="NumberOfPassengers" class="form-label">Количество пассажиров</label>
+        <input asp-for="NumberOfPassengers" type="number" class="form-control" min="1" />
+        <span asp-validation-for="NumberOfPassengers" class="text-danger"></span>
+    </div>
+
+    <!-- Сбор на пассажира -->
+    <div class="mb-3">
+        <label asp-for="PassengerTax" class="form-label">Сбор на пассажира (₽)</label>
+        <input asp-for="PassengerTax" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="PassengerTax" class="text-danger"></span>
+    </div>
+
+    <!-- Количество экипажа -->
+    <div class="mb-3">
+        <label asp-for="NumberOfCrew" class="form-label">Количество экипажа</label>
+        <input asp-for="NumberOfCrew" type="number" class="form-control" min="1" />
+        <span asp-validation-for="NumberOfCrew" class="text-danger"></span>
+    </div>
+
+    <!-- Сбор на экипаж -->
+    <div class="mb-3">
+        <label asp-for="CrewTax" class="form-label">Сбор на экипаж (₽)</label>
+        <input asp-for="CrewTax" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="CrewTax" class="text-danger"></span>
+    </div>
+
+    <!-- Процент надбавки за обслуживание -->
+    <div class="mb-3">
+        <label asp-for="ServicePercentage" class="form-label">Процент надбавки за обслуживание (%)</label>
+        <input asp-for="ServicePercentage" type="number" step="0.01" class="form-control" />
+        <span asp-validation-for="ServicePercentage" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Добавить</button>
+    <a asp-action="Worker" class="btn btn-secondary">Отмена</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

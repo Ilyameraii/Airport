@@ -32,7 +32,7 @@ namespace Tests
         public async Task TotalArrivingFlightsShouldReturnsCountOfFlights()
         {
             // Arrange
-            repositoryMock.Setup(r => r.TotalArrivingFlights(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.TotalArrivingFlightsAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
             // Act
@@ -40,7 +40,7 @@ namespace Tests
 
             // Assert
             result.Should().Be(5);
-            repositoryMock.Verify(r=>r.TotalArrivingFlights(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r=>r.TotalArrivingFlightsAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Tests
         public async Task TotalCrewShouldReturnsSumOfCrews()
         {
             // Arrange
-            repositoryMock.Setup(r => r.TotalCrew(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.TotalCrewAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
             // Act
@@ -58,25 +58,25 @@ namespace Tests
 
             // Assert
             result.Should().Be(5);
-            repositoryMock.Verify(r => r.TotalCrew(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.TotalCrewAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>
-        /// Проверка на корректное получение суммы всех пассажиров в методе TotalPassangersAsync класса ReportInfoService
+        /// Проверка на корректное получение суммы всех пассажиров в методе TotalPassengersAsync класса ReportInfoService
         /// </summary>
         [Fact]
-        public async Task TotalPassangersShouldReturnsSumOfPassangers()
+        public async Task TotalPassengersShouldReturnsSumOfPassengers()
         {
             // Arrange
-            repositoryMock.Setup(r => r.TotalPassangers(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.TotalPassengersAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
             // Act
-            var result = await service.TotalPassangersAsync(CancellationToken.None);
+            var result = await service.TotalPassengersAsync(CancellationToken.None);
 
             // Assert
             result.Should().Be(5);
-            repositoryMock.Verify(r => r.TotalPassangers(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.TotalPassengersAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
 
         /// <summary>
@@ -86,7 +86,7 @@ namespace Tests
         public async Task TotalRevenueShouldReturnsSumOfRevenue()
         {
             // Arrange
-            repositoryMock.Setup(r => r.TotalRevenue(It.IsAny<CancellationToken>()))
+            repositoryMock.Setup(r => r.TotalRevenueAsync(It.IsAny<CancellationToken>()))
                 .ReturnsAsync(5);
 
             // Act
@@ -94,7 +94,7 @@ namespace Tests
 
             // Assert
             result.Should().Be(5);
-            repositoryMock.Verify(r => r.TotalRevenue(It.IsAny<CancellationToken>()), Times.Once);
+            repositoryMock.Verify(r => r.TotalRevenueAsync(It.IsAny<CancellationToken>()), Times.Once);
         }
     }
 }
